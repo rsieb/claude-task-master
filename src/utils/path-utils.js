@@ -17,8 +17,8 @@ import {
 import { getLoggerOrDefault } from './logger-utils.js';
 
 /**
- * Normalize project root to ensure it doesn't end with .taskmaster
- * This prevents double .taskmaster paths when using constants that include .taskmaster
+ * Normalize project root to ensure it doesn't end with taskmaster
+ * This prevents double taskmaster paths when using constants that include taskmaster
  * @param {string} projectRoot - The project root path to normalize
  * @returns {string} - Normalized project root path
  */
@@ -31,13 +31,13 @@ export function normalizeProjectRoot(projectRoot) {
 	// Split the path into segments
 	const segments = projectRoot.split(path.sep);
 
-	// Find the index of .taskmaster segment
+	// Find the index of taskmaster segment
 	const taskmasterIndex = segments.findIndex(
-		(segment) => segment === '.taskmaster'
+		(segment) => segment === 'taskmaster'
 	);
 
 	if (taskmasterIndex !== -1) {
-		// If .taskmaster is found, return everything up to but not including .taskmaster
+		// If taskmaster is found, return everything up to but not including taskmaster
 		const normalizedSegments = segments.slice(0, taskmasterIndex);
 		return normalizedSegments.join(path.sep) || path.sep;
 	}
@@ -52,7 +52,7 @@ export function normalizeProjectRoot(projectRoot) {
  */
 export function findProjectRoot(startDir = process.cwd()) {
 	const projectMarkers = [
-		'.taskmaster',
+		'taskmaster',
 		TASKMASTER_TASKS_FILE,
 		'tasks.json',
 		LEGACY_TASKS_FILE,
@@ -104,7 +104,7 @@ export function findTasksPath(explicitPath = null, args = null, log = null) {
 		return null;
 	}
 
-	// 2. Normalize project root to prevent double .taskmaster paths
+	// 2. Normalize project root to prevent double taskmaster paths
 	const projectRoot = normalizeProjectRoot(rawProjectRoot);
 
 	// 3. If explicit path is provided, resolve it relative to project root (highest priority)
@@ -125,7 +125,7 @@ export function findTasksPath(explicitPath = null, args = null, log = null) {
 
 	// 4. Check possible locations in order of preference
 	const possiblePaths = [
-		path.join(projectRoot, TASKMASTER_TASKS_FILE), // .taskmaster/tasks/tasks.json (NEW)
+		path.join(projectRoot, TASKMASTER_TASKS_FILE), // taskmaster/tasks/tasks.json (NEW)
 		path.join(projectRoot, LEGACY_TASKS_FILE) // tasks/tasks.json (LEGACY)
 	];
 
@@ -136,18 +136,18 @@ export function findTasksPath(explicitPath = null, args = null, log = null) {
 			// Issue deprecation warning for legacy paths
 			if (
 				tasksPath.includes('tasks/tasks.json') &&
-				!tasksPath.includes('.taskmaster')
+				!tasksPath.includes('taskmaster')
 			) {
 				logger.warn?.(
-					`⚠️  DEPRECATION WARNING: Found tasks.json in legacy location '${tasksPath}'. Please migrate to the new .taskmaster directory structure. Run 'task-master migrate' to automatically migrate your project.`
+					`⚠️  DEPRECATION WARNING: Found tasks.json in legacy location '${tasksPath}'. Please migrate to the new taskmaster directory structure. Run 'task-master migrate' to automatically migrate your project.`
 				);
 			} else if (
 				tasksPath.endsWith('tasks.json') &&
-				!tasksPath.includes('.taskmaster') &&
+				!tasksPath.includes('taskmaster') &&
 				!tasksPath.includes('tasks/')
 			) {
 				logger.warn?.(
-					`⚠️  DEPRECATION WARNING: Found tasks.json in legacy root location '${tasksPath}'. Please migrate to the new .taskmaster directory structure. Run 'task-master migrate' to automatically migrate your project.`
+					`⚠️  DEPRECATION WARNING: Found tasks.json in legacy root location '${tasksPath}'. Please migrate to the new taskmaster directory structure. Run 'task-master migrate' to automatically migrate your project.`
 				);
 			}
 
@@ -193,12 +193,12 @@ export function findPRDPath(explicitPath = null, args = null, log = null) {
 		return null;
 	}
 
-	// 3. Normalize project root to prevent double .taskmaster paths
+	// 3. Normalize project root to prevent double taskmaster paths
 	const projectRoot = normalizeProjectRoot(rawProjectRoot);
 
 	// 4. Check possible locations in order of preference
 	const locations = [
-		TASKMASTER_DOCS_DIR, // .taskmaster/docs/ (NEW)
+		TASKMASTER_DOCS_DIR, // taskmaster/docs/ (NEW)
 		'scripts/', // Legacy location
 		'' // Project root
 	];
@@ -214,7 +214,7 @@ export function findPRDPath(explicitPath = null, args = null, log = null) {
 				// Issue deprecation warning for legacy paths
 				if (location === 'scripts/' || location === '') {
 					logger.warn?.(
-						`⚠️  DEPRECATION WARNING: Found PRD file in legacy location '${prdPath}'. Please migrate to .taskmaster/docs/ directory. Run 'task-master migrate' to automatically migrate your project.`
+						`⚠️  DEPRECATION WARNING: Found PRD file in legacy location '${prdPath}'. Please migrate to taskmaster/docs/ directory. Run 'task-master migrate' to automatically migrate your project.`
 					);
 				}
 
@@ -265,12 +265,12 @@ export function findComplexityReportPath(
 		return null;
 	}
 
-	// 3. Normalize project root to prevent double .taskmaster paths
+	// 3. Normalize project root to prevent double taskmaster paths
 	const projectRoot = normalizeProjectRoot(rawProjectRoot);
 
 	// 4. Check possible locations in order of preference
 	const locations = [
-		TASKMASTER_REPORTS_DIR, // .taskmaster/reports/ (NEW)
+		TASKMASTER_REPORTS_DIR, // taskmaster/reports/ (NEW)
 		'scripts/', // Legacy location
 		'' // Project root
 	];
@@ -291,7 +291,7 @@ export function findComplexityReportPath(
 				// Issue deprecation warning for legacy paths
 				if (location === 'scripts/' || location === '') {
 					logger.warn?.(
-						`⚠️  DEPRECATION WARNING: Found complexity report in legacy location '${reportPath}'. Please migrate to .taskmaster/reports/ directory. Run 'task-master migrate' to automatically migrate your project.`
+						`⚠️  DEPRECATION WARNING: Found complexity report in legacy location '${reportPath}'. Please migrate to taskmaster/reports/ directory. Run 'task-master migrate' to automatically migrate your project.`
 					);
 				}
 
@@ -332,10 +332,10 @@ export function resolveTasksOutputPath(
 	const rawProjectRoot =
 		args?.projectRoot || findProjectRoot() || process.cwd();
 
-	// 3. Normalize project root to prevent double .taskmaster paths
+	// 3. Normalize project root to prevent double taskmaster paths
 	const projectRoot = normalizeProjectRoot(rawProjectRoot);
 
-	// 4. Use new .taskmaster structure by default
+	// 4. Use new taskmaster structure by default
 	const defaultPath = path.join(projectRoot, TASKMASTER_TASKS_FILE);
 	logger.info?.(`Using default output path: ${defaultPath}`);
 
@@ -387,8 +387,8 @@ export function resolveComplexityReportOutputPath(
 		filename = `task-complexity-report_${tag}.json`;
 	}
 
-	// 4. Use new .taskmaster structure by default
-	const defaultPath = path.join(projectRoot, '.taskmaster/reports', filename);
+	// 4. Use new taskmaster structure by default
+	const defaultPath = path.join(projectRoot, 'taskmaster/reports', filename);
 	logger.info?.(
 		`Using tag-aware complexity report output path: ${defaultPath}`
 	);
@@ -437,7 +437,7 @@ export function findConfigPath(explicitPath = null, args = null, log = null) {
 		return null;
 	}
 
-	// 3. Normalize project root to prevent double .taskmaster paths
+	// 3. Normalize project root to prevent double taskmaster paths
 	const projectRoot = normalizeProjectRoot(rawProjectRoot);
 
 	// 4. Check possible locations in order of preference
@@ -451,7 +451,7 @@ export function findConfigPath(explicitPath = null, args = null, log = null) {
 			// Issue deprecation warning for legacy paths
 			if (configPath?.endsWith(LEGACY_CONFIG_FILE)) {
 				logger.warn?.(
-					`⚠️  DEPRECATION WARNING: Found configuration in legacy location '${configPath}'. Please migrate to .taskmaster/config.json. Run 'task-master migrate' to automatically migrate your project.`
+					`⚠️  DEPRECATION WARNING: Found configuration in legacy location '${configPath}'. Please migrate to taskmaster/config.json. Run 'task-master migrate' to automatically migrate your project.`
 				);
 			}
 

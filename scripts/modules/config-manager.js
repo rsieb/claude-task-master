@@ -157,7 +157,7 @@ function _loadAndValidateConfig(explicitRoot = null) {
 			if (isLegacy) {
 				console.warn(
 					chalk.yellow(
-						`⚠️  DEPRECATION WARNING: Found configuration in legacy location '${configPath}'. Please migrate to .taskmaster/config.json. Run 'task-master migrate' to automatically migrate your project.`
+						`⚠️  DEPRECATION WARNING: Found configuration in legacy location '${configPath}'. Please migrate to taskmaster/config.json. Run 'task-master migrate' to automatically migrate your project.`
 					)
 				);
 			}
@@ -216,7 +216,7 @@ function _loadAndValidateConfig(explicitRoot = null) {
 			);
 		} else {
 			// Don't warn about missing config during initialization
-			// Only warn if this looks like an existing project (has .taskmaster dir or legacy config marker)
+			// Only warn if this looks like an existing project (has taskmaster dir or legacy config marker)
 			const hasTaskmasterDir = fs.existsSync(
 				path.join(rootToUse, TASKMASTER_DIR)
 			);
@@ -838,12 +838,12 @@ function writeConfig(config, explicitRoot = null) {
 	}
 	// ---> End determine root path logic <---
 
-	// Use new config location: .taskmaster/config.json
-	const taskmasterDir = path.join(rootPath, '.taskmaster');
+	// Use new config location: taskmaster/config.json
+	const taskmasterDir = path.join(rootPath, 'taskmaster');
 	const configPath = path.join(taskmasterDir, 'config.json');
 
 	try {
-		// Ensure .taskmaster directory exists
+		// Ensure taskmaster directory exists
 		if (!fs.existsSync(taskmasterDir)) {
 			fs.mkdirSync(taskmasterDir, { recursive: true });
 		}

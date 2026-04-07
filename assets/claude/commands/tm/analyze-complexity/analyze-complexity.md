@@ -106,7 +106,7 @@ For each high-complexity task:
 ## Integration
 
 Results are:
-- Saved to `.taskmaster/reports/complexity-analysis.md`
+- Saved to `taskmaster/reports/complexity-analysis.md`
 - Used by expand command
 - Inform sprint planning
 - Guide resource allocation

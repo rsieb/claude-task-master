@@ -101,7 +101,7 @@ export async function syncTasksToReadme(projectRoot = null, options = {}) {
 		// Get current tasks using the list-tasks functionality with markdown-readme format
 		const tasksOutput = await listTasks(
 			tasksPath ||
-				path.join(actualProjectRoot, '.taskmaster', 'tasks', 'tasks.json'),
+				path.join(actualProjectRoot, 'taskmaster', 'tasks', 'tasks.json'),
 			status,
 			null,
 			withSubtasks,

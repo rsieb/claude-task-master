@@ -41,7 +41,7 @@ The MCP provider allows Task Master to:
 
 ### MCP Provider Setup
 
-Add MCP provider to your `.taskmaster/config.json`:
+Add MCP provider to your `taskmaster/config.json`:
 
 ```json
 {
@@ -407,7 +407,7 @@ Enable debug logging to see MCP provider operations:
 // Set debug flag in config or environment
 process.env.DEBUG = 'true';
 
-// Or in .taskmasterconfig
+// Or in taskmasterconfig
 {
   "debug": true,
   "models": { /* ... */ }
@@ -442,7 +442,7 @@ if (session && session.clientCapabilities && session.clientCapabilities.sampling
 When using Task Master in VS Code with MCP support:
 
 1. Configure Task Master MCP server in your `.vscode/mcp.json`
-2. Set MCP provider as main/research in `.taskmaster/config.json`
+2. Set MCP provider as main/research in `taskmaster/config.json`
 3. Benefit from integrated AI assistance within your development workflow
 4. Use Task Master tools directly from VS Code's MCP interface
 

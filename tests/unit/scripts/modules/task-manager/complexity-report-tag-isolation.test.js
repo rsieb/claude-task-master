@@ -12,9 +12,9 @@ jest.unstable_mockModule('../../../../../src/utils/path-utils.js', () => ({
 	resolveComplexityReportOutputPath: jest.fn(),
 	findComplexityReportPath: jest.fn(),
 	findConfigPath: jest.fn(),
-	findPRDPath: jest.fn(() => '/mock/project/root/.taskmaster/docs/PRD.md'),
+	findPRDPath: jest.fn(() => '/mock/project/root/taskmaster/docs/PRD.md'),
 	findTasksPath: jest.fn(
-		() => '/mock/project/root/.taskmaster/tasks/tasks.json'
+		() => '/mock/project/root/taskmaster/tasks/tasks.json'
 	),
 	findProjectRoot: jest.fn(() => '/mock/project/root'),
 	normalizeProjectRoot: jest.fn((root) => root)
@@ -488,7 +488,7 @@ describe('Complexity Report Tag Isolation', () => {
 					filename = `task-complexity-report_${slugifiedTag}.json`;
 				}
 
-				return path.join(projectRoot, '.taskmaster/reports', filename);
+				return path.join(projectRoot, 'taskmaster/reports', filename);
 			}
 		);
 
@@ -504,7 +504,7 @@ describe('Complexity Report Tag Isolation', () => {
 				filename = `task-complexity-report_${tag}.json`;
 			}
 
-			return path.join(projectRoot, '.taskmaster/reports', filename);
+			return path.join(projectRoot, 'taskmaster/reports', filename);
 		});
 	});
 
@@ -517,7 +517,7 @@ describe('Complexity Report Tag Isolation', () => {
 			expect(result).toBe(
 				path.join(
 					projectRoot,
-					'.taskmaster/reports',
+					'taskmaster/reports',
 					'task-complexity-report.json'
 				)
 			);
@@ -531,7 +531,7 @@ describe('Complexity Report Tag Isolation', () => {
 			expect(result).toBe(
 				path.join(
 					projectRoot,
-					'.taskmaster/reports',
+					'taskmaster/reports',
 					'task-complexity-report_feature-auth.json'
 				)
 			);
@@ -542,7 +542,7 @@ describe('Complexity Report Tag Isolation', () => {
 			expect(result).toBe(
 				path.join(
 					projectRoot,
-					'.taskmaster/reports',
+					'taskmaster/reports',
 					'task-complexity-report.json'
 				)
 			);
@@ -590,7 +590,7 @@ describe('Complexity Report Tag Isolation', () => {
 			expect(mockWriteFileSync).toHaveBeenCalledWith(
 				path.join(
 					projectRoot,
-					'.taskmaster/reports',
+					'taskmaster/reports',
 					'task-complexity-report.json'
 				),
 				expect.any(String),
@@ -629,7 +629,7 @@ describe('Complexity Report Tag Isolation', () => {
 			expect(mockWriteFileSync).toHaveBeenCalledWith(
 				path.join(
 					projectRoot,
-					'.taskmaster/reports',
+					'taskmaster/reports',
 					'task-complexity-report_feature-auth.json'
 				),
 				expect.any(String),
@@ -684,7 +684,7 @@ describe('Complexity Report Tag Isolation', () => {
 			expect(mockWriteFileSync).toHaveBeenCalledWith(
 				path.join(
 					projectRoot,
-					'.taskmaster/reports',
+					'taskmaster/reports',
 					'task-complexity-report_feature-auth.json'
 				),
 				expect.any(String),
@@ -695,7 +695,7 @@ describe('Complexity Report Tag Isolation', () => {
 			expect(mockWriteFileSync).not.toHaveBeenCalledWith(
 				path.join(
 					projectRoot,
-					'.taskmaster/reports',
+					'taskmaster/reports',
 					'task-complexity-report.json'
 				),
 				expect.any(String),
@@ -733,7 +733,7 @@ describe('Complexity Report Tag Isolation', () => {
 			expect(mockExistsSync).toHaveBeenCalledWith(
 				path.join(
 					projectRoot,
-					'.taskmaster/reports',
+					'taskmaster/reports',
 					'task-complexity-report.json'
 				)
 			);
@@ -767,7 +767,7 @@ describe('Complexity Report Tag Isolation', () => {
 			expect(mockExistsSync).toHaveBeenCalledWith(
 				path.join(
 					projectRoot,
-					'.taskmaster/reports',
+					'taskmaster/reports',
 					'task-complexity-report_feature-auth.json'
 				)
 			);
@@ -802,7 +802,7 @@ describe('Complexity Report Tag Isolation', () => {
 			expect(mockExistsSync).toHaveBeenCalledWith(
 				path.join(
 					projectRoot,
-					'.taskmaster/reports',
+					'taskmaster/reports',
 					'task-complexity-report_feature-auth.json'
 				)
 			);
@@ -811,7 +811,7 @@ describe('Complexity Report Tag Isolation', () => {
 			expect(mockExistsSync).not.toHaveBeenCalledWith(
 				path.join(
 					projectRoot,
-					'.taskmaster/reports',
+					'taskmaster/reports',
 					'task-complexity-report.json'
 				)
 			);
@@ -841,7 +841,7 @@ describe('Complexity Report Tag Isolation', () => {
 					tag: 'feature-auth',
 					complexityReportPath: path.join(
 						projectRoot,
-						'.taskmaster/reports',
+						'taskmaster/reports',
 						'task-complexity-report_feature-auth.json'
 					),
 					mcpLog: {
@@ -859,7 +859,7 @@ describe('Complexity Report Tag Isolation', () => {
 			expect(readJSON).toHaveBeenCalledWith(
 				path.join(
 					projectRoot,
-					'.taskmaster/reports',
+					'taskmaster/reports',
 					'task-complexity-report_feature-auth.json'
 				)
 			);
@@ -887,7 +887,7 @@ describe('Complexity Report Tag Isolation', () => {
 					tag: 'master',
 					complexityReportPath: path.join(
 						projectRoot,
-						'.taskmaster/reports',
+						'taskmaster/reports',
 						'task-complexity-report.json'
 					),
 					mcpLog: {
@@ -905,7 +905,7 @@ describe('Complexity Report Tag Isolation', () => {
 			expect(readJSON).toHaveBeenCalledWith(
 				path.join(
 					projectRoot,
-					'.taskmaster/reports',
+					'taskmaster/reports',
 					'task-complexity-report.json'
 				)
 			);
@@ -980,7 +980,7 @@ describe('Complexity Report Tag Isolation', () => {
 			expect(mockWriteFileSync).toHaveBeenCalledWith(
 				path.join(
 					projectRoot,
-					'.taskmaster/reports',
+					'taskmaster/reports',
 					'task-complexity-report.json'
 				),
 				expect.stringContaining('"taskTitle": "Test Task"'),
@@ -1014,7 +1014,7 @@ describe('Complexity Report Tag Isolation', () => {
 			expect(mockWriteFileSync).toHaveBeenCalledWith(
 				path.join(
 					projectRoot,
-					'.taskmaster/reports',
+					'taskmaster/reports',
 					'task-complexity-report_feature-auth.json'
 				),
 				expect.stringContaining('"taskTitle": "Test Task"'),
@@ -1113,7 +1113,7 @@ describe('Complexity Report Tag Isolation', () => {
 			expect(mockWriteFileSync).toHaveBeenCalledWith(
 				path.join(
 					projectRoot,
-					'.taskmaster/reports',
+					'taskmaster/reports',
 					'task-complexity-report_feature-user-auth-v2.json'
 				),
 				expect.any(String),

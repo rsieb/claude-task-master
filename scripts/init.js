@@ -59,8 +59,8 @@ const LOG_LEVELS = {
 };
 
 // Determine log level from environment variable or default to 'info'
-const LOG_LEVEL = process.env.TASKMASTER_LOG_LEVEL
-	? LOG_LEVELS[process.env.TASKMASTER_LOG_LEVEL.toLowerCase()]
+const LOG_LEVEL = process.envtaskmaster_LOG_LEVEL
+	? LOG_LEVELS[process.envtaskmaster_LOG_LEVEL.toLowerCase()]
 	: LOG_LEVELS.info; // Default to info
 
 // Create a color gradient for the banner
@@ -582,7 +582,7 @@ function createProjectStructure(
 	const targetDir = process.cwd();
 	log('info', `Initializing project in ${targetDir}`);
 
-	// Create NEW .taskmaster directory structure (using constants)
+	// Create NEW taskmaster directory structure (using constants)
 	ensureDirectoryExists(path.join(targetDir, TASKMASTER_DIR));
 	ensureDirectoryExists(path.join(targetDir, TASKMASTER_TASKS_DIR));
 	ensureDirectoryExists(path.join(targetDir, TASKMASTER_DOCS_DIR));

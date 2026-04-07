@@ -387,9 +387,9 @@ task-master models --set-research=google/gemini-pro --openrouter
 task-master models --setup
 ```
 
-Configuration is stored in `.taskmaster/config.json` in your project root (legacy `.taskmasterconfig` files are automatically migrated). API keys are still managed via `.env` or MCP configuration. Use `task-master models` without flags to see available built-in models. Use `--setup` for a guided experience.
+Configuration is stored in `taskmaster/config.json` in your project root (legacy `taskmasterconfig` files are automatically migrated). API keys are still managed via `.env` or MCP configuration. Use `task-master models` without flags to see available built-in models. Use `--setup` for a guided experience.
 
-State is stored in `.taskmaster/state.json` in your project root. It maintains important information like the current tag. Do not manually edit this file.
+State is stored in `taskmaster/state.json` in your project root. It maintains important information like the current tag. Do not manually edit this file.
 
 ## Research Fresh Information
 
@@ -416,7 +416,7 @@ task-master research "How to implement this feature?" --file=custom-tasks.json
 # Research within a specific tag context
 task-master research "Database optimization strategies" --tag=feature-branch
 
-# Save research conversation to .taskmaster/docs/research/ directory (for later reference)
+# Save research conversation to taskmaster/docs/research/ directory (for later reference)
 task-master research "Database optimization techniques" --save-file
 
 # Save key findings directly to a task or subtask (recommended for actionable insights)

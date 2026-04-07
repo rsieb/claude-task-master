@@ -80,9 +80,9 @@ alwaysApply: false
 
 ## Configuration Management (via `config-manager.js`)
 
-Taskmaster configuration (excluding API keys) is primarily managed through the `.taskmasterconfig` file located in the project root and accessed via getters in [`scripts/modules/config-manager.js`](mdc:scripts/modules/config-manager.js).
+Taskmaster configuration (excluding API keys) is primarily managed through the `taskmasterconfig` file located in the project root and accessed via getters in [`scripts/modules/config-manager.js`](mdc:scripts/modules/config-manager.js).
 
-- **`.taskmasterconfig` File**:
+- **`taskmasterconfig` File**:
   - ✅ DO: Use this JSON file to store settings like AI model selections (main, research, fallback), parameters (temperature, maxTokens), logging level, default priority/subtasks, etc.
   - ✅ DO: Manage this file using the `task-master models --setup` CLI command or the `models` MCP tool.
   - ✅ DO: Rely on [`config-manager.js`](mdc:scripts/modules/config-manager.js) to load this file (using the correct project root passed from MCP or found via CLI utils), merge with defaults, and provide validated settings.
@@ -101,7 +101,7 @@ Taskmaster configuration (excluding API keys) is primarily managed through the `
   - ✅ DO: Understand that the unified service layer (`ai-services-unified.js`) internally resolves API keys using `resolveEnvVariable(key, session)` from `utils.js`.
 
 - **Error Handling**:
-  - ✅ DO: Handle potential `ConfigurationError` if the `.taskmasterconfig` file is missing or invalid when accessed via `getConfig` (e.g., in `commands.js` or direct functions).
+  - ✅ DO: Handle potential `ConfigurationError` if the `taskmasterconfig` file is missing or invalid when accessed via `getConfig` (e.g., in `commands.js` or direct functions).
 
 ## Logging Utilities (in `scripts/modules/utils.js`)
 
@@ -634,7 +634,7 @@ Refer to [`context_gathering.mdc`](mdc:.cursor/rules/context_gathering.mdc) for 
         writeJSON(filepath, migratedData);
         
         // Set global flag for CLI notice and perform complete migration
-        global.taskMasterMigrationOccurred = true;
+        globaltaskmasterMigrationOccurred = true;
         performCompleteTagMigration(filepath);
         
         data = migratedData;
@@ -673,7 +673,7 @@ Refer to [`context_gathering.mdc`](mdc:.cursor/rules/context_gathering.mdc) for 
     const rootPath = path.parse(currentPath).root;
     
     while (currentPath !== rootPath) {
-      const taskMasterPath = path.join(currentPath, '.taskmaster');
+      const taskMasterPath = path.join(currentPath, 'taskmaster');
       if (fs.existsSync(taskMasterPath)) {
         return currentPath;
       }
@@ -734,7 +734,7 @@ Refer to [`context_gathering.mdc`](mdc:.cursor/rules/context_gathering.mdc) for 
       const projectRoot = findProjectRoot();
       if (!projectRoot) return 'master';
       
-      const statePath = path.join(projectRoot, '.taskmaster', 'state.json');
+      const statePath = path.join(projectRoot, 'taskmaster', 'state.json');
       if (fs.existsSync(statePath)) {
         const state = readJSON(statePath);
         return state.currentTag || 'master';
@@ -760,13 +760,13 @@ Refer to [`context_gathering.mdc`](mdc:.cursor/rules/context_gathering.mdc) for 
       const projectRoot = findProjectRoot(path.dirname(tasksJsonPath)) || path.dirname(tasksJsonPath);
       
       // 1. Migrate config.json - add defaultTag and tags section
-      const configPath = path.join(projectRoot, '.taskmaster', 'config.json');
+      const configPath = path.join(projectRoot, 'taskmaster', 'config.json');
       if (fs.existsSync(configPath)) {
         migrateConfigJson(configPath);
       }
       
       // 2. Create state.json if it doesn't exist
-      const statePath = path.join(projectRoot, '.taskmaster', 'state.json');
+      const statePath = path.join(projectRoot, 'taskmaster', 'state.json');
       if (!fs.existsSync(statePath)) {
         createStateJson(statePath);
       }
@@ -842,7 +842,7 @@ Refer to [`context_gathering.mdc`](mdc:.cursor/rules/context_gathering.mdc) for 
       const projectRoot = findProjectRoot();
       if (!projectRoot) return;
       
-      const statePath = path.join(projectRoot, '.taskmaster', 'state.json');
+      const statePath = path.join(projectRoot, 'taskmaster', 'state.json');
       const state = readJSON(statePath) || {};
       
       state.migrationNoticeShown = false; // Reset to show notice

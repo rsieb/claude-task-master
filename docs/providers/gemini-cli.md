@@ -64,7 +64,7 @@ task-master models --set-main gemini-2.5-pro --gemini-cli
 task-master models --set-main gemini-2.5-flash --gemini-cli
 ```
 
-You can also manually edit your `.taskmaster/config.json`:
+You can also manually edit your `taskmaster/config.json`:
 
 ```json
 {

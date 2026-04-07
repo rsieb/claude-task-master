@@ -128,7 +128,7 @@ The VS Code profile automatically configures schema validation:
     {
       "fileMatch": [
         "src/prompts/**/*.json",
-        ".taskmaster/prompts/**/*.json",
+        "taskmaster/prompts/**/*.json",
         "prompts/**/*.json"
       ],
       "url": "./src/prompts/schemas/prompt-template.schema.json"
@@ -152,7 +152,7 @@ For other development environments:
 
 **File Patterns**:
 - `src/prompts/**/*.json`
-- `.taskmaster/prompts/**/*.json`
+- `taskmaster/prompts/**/*.json`
 - `prompts/**/*.json`
 
 ## Validation Examples

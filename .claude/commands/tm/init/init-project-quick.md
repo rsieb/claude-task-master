@@ -12,7 +12,7 @@ task-master init -y
 
 ## What It Does
 
-1. Creates `.taskmaster/` directory structure
+1. Creates `taskmaster/` directory structure
 2. Initializes empty `tasks.json`
 3. Sets up default configuration
 4. Uses directory name as project name

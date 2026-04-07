@@ -123,8 +123,8 @@ alwaysApply: true
   - CLI Syntax: `task-master generate`
   - Description: Generates individual task files based on tasks.json
   - Parameters:
-    - `--file=<path>, -f`: Use alternative tasks.json file (default: '.taskmaster/tasks/tasks.json')
-    - `--output=<dir>, -o`: Output directory (default: '.taskmaster/tasks')
+    - `--file=<path>, -f`: Use alternative tasks.json file (default: 'taskmaster/tasks/tasks.json')
+    - `--output=<dir>, -o`: Output directory (default: 'taskmaster/tasks')
   - Example: `task-master generate`
   - Notes: Overwrites existing task files. Creates output directory if needed.
 

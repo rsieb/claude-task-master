@@ -59,7 +59,7 @@ export function registerResearchTool(server) {
 				.boolean()
 				.optional()
 				.describe(
-					'Save research results to .taskmaster/docs/research/ directory (default: false)'
+					'Save research results to taskmaster/docs/research/ directory (default: false)'
 				),
 			projectRoot: z
 				.string()

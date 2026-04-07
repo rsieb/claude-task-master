@@ -7,7 +7,7 @@
 ```bash
 # Project Setup
 task-master init                                    # Initialize Task Master in current project
-task-master parse-prd .taskmaster/docs/prd.txt      # Generate tasks from PRD document
+task-master parse-prd taskmaster/docs/prd.txt      # Generate tasks from PRD document
 task-master models --setup                        # Configure AI models interactively
 
 # Daily Development Workflow
@@ -39,10 +39,10 @@ task-master generate                                         # Update task markd
 
 ### Core Files
 
-- `.taskmaster/tasks/tasks.json` - Main task data file (auto-managed)
-- `.taskmaster/config.json` - AI model configuration (use `task-master models` to modify)
-- `.taskmaster/docs/prd.txt` - Product Requirements Document for parsing
-- `.taskmaster/tasks/*.txt` - Individual task files (auto-generated from tasks.json)
+- `taskmaster/tasks/tasks.json` - Main task data file (auto-managed)
+- `taskmaster/config.json` - AI model configuration (use `task-master models` to modify)
+- `taskmaster/docs/prd.txt` - Product Requirements Document for parsing
+- `taskmaster/tasks/*.txt` - Individual task files (auto-generated from tasks.json)
 - `.env` - API keys for CLI usage
 
 ### Claude Code Integration Files
@@ -56,7 +56,7 @@ task-master generate                                         # Update task markd
 
 ```
 project/
-├── .taskmaster/
+├── taskmaster/
 │   ├── tasks/              # Task files directory
 │   │   ├── tasks.json      # Main task database
 │   │   ├── task-1.md      # Individual task files
@@ -139,7 +139,7 @@ complexity_report; // = task-master complexity-report
 task-master init
 
 # Create or obtain PRD, then parse it
-task-master parse-prd .taskmaster/docs/prd.txt
+task-master parse-prd taskmaster/docs/prd.txt
 
 # Analyze complexity and expand tasks
 task-master analyze-complexity --research
@@ -388,7 +388,7 @@ These commands make AI calls and may take up to a minute:
 ### File Management
 
 - Never manually edit `tasks.json` - use commands instead
-- Never manually edit `.taskmaster/config.json` - use `task-master models`
+- Never manually edit `taskmaster/config.json` - use `task-master models`
 - Task markdown files in `tasks/` are auto-generated
 - Run `task-master generate` after manual changes to tasks.json
 

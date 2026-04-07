@@ -38,7 +38,7 @@ The standard pattern for adding a feature follows this workflow:
 4. **UI Components**: Add any display functions to [`ui.js`](mdc:scripts/modules/ui.js) following [`ui.mdc`](mdc:.cursor/rules/ui.mdc). Consider enhanced formatting with syntax highlighting for code blocks.
 5. **Command Integration**: Add the CLI command to [`commands.js`](mdc:scripts/modules/commands.js) following [`commands.mdc`](mdc:.cursor/rules/commands.mdc).
 6. **Testing**: Write tests for all components of the feature (following [`tests.mdc`](mdc:.cursor/rules/tests.mdc))
-7. **Configuration**: Update configuration settings or add new ones in [`config-manager.js`](mdc:scripts/modules/config-manager.js) and ensure getters/setters are appropriate. Update documentation in [`utilities.mdc`](mdc:.cursor/rules/utilities.mdc) and [`taskmaster.mdc`](mdc:.cursor/rules/taskmaster.mdc). Update the `.taskmasterconfig` structure if needed.
+7. **Configuration**: Update configuration settings or add new ones in [`config-manager.js`](mdc:scripts/modules/config-manager.js) and ensure getters/setters are appropriate. Update documentation in [`utilities.mdc`](mdc:.cursor/rules/utilities.mdc) and [`taskmaster.mdc`](mdc:.cursor/rules/taskmaster.mdc). Update the `taskmasterconfig` structure if needed.
 8. **Documentation**: Update help text and documentation in [`dev_workflow.mdc`](mdc:.cursor/rules/dev_workflow.mdc) and [`taskmaster.mdc`](mdc:.cursor/rules/taskmaster.mdc).
 
 ## Critical Checklist for New Features
@@ -696,7 +696,7 @@ When implementing project initialization commands:
         const targetTag = options.tag || getCurrentTag() || 'master';
         
         const result = await newFeatureCore(
-          path.join(projectRoot, '.taskmaster', 'tasks', 'tasks.json'),
+          path.join(projectRoot, 'taskmaster', 'tasks', 'tasks.json'),
           { param: options.param },
           { 
             force: options.force,

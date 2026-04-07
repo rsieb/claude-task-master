@@ -683,7 +683,7 @@ async function analyzeTaskComplexity(options, context = {}) {
 				if (aiError.message.includes('API key')) {
 					console.log(
 						chalk.yellow(
-							'\nPlease ensure your API keys are correctly configured in .env or ~/.taskmaster/.env'
+							'\nPlease ensure your API keys are correctly configured in .env or ~/taskmaster/.env'
 						)
 					);
 					console.log(

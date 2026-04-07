@@ -40,7 +40,7 @@ alwaysApply: false
     - **Purpose**: Centralized interface for all LLM interactions using Vercel AI SDK.
     - **Responsibilities** (See also: [`ai_services.mdc`](mdc:.cursor/rules/ai_services.mdc)):
       - Exports `generateTextService`, `generateObjectService`.
-      - Handles provider/model selection based on `role` and `.taskmasterconfig`.
+      - Handles provider/model selection based on `role` and `taskmasterconfig`.
       - Resolves API keys (from `.env` or `session.env`).
       - Implements fallback and retry logic.
       - Orchestrates calls to provider-specific implementations (`src/ai-providers/`).
@@ -53,7 +53,7 @@ alwaysApply: false
   - **[`config-manager.js`](mdc:scripts/modules/config-manager.js): Configuration Management**
     - **Purpose**: Loads, validates, and provides access to configuration.
     - **Responsibilities** (See also: [`utilities.mdc`](mdc:.cursor/rules/utilities.mdc)):
-      - Reads and merges `.taskmasterconfig` with defaults.
+      - Reads and merges `taskmasterconfig` with defaults.
       - Provides getters (e.g., `getMainProvider`, `getLogLevel`, `getDefaultSubtasks`) for accessing settings.
       - **Tag Configuration**: Manages `global.defaultTag` and `tags` section for tag system settings.
       - **Note**: Does **not** store or directly handle API keys (keys are in `.env` or MCP `session.env`).
@@ -103,7 +103,7 @@ alwaysApply: false
 - **Silent Migration**: Automatically transforms legacy `{"tasks": [...]}` format to tagged format `{"master": {"tasks": [...]}}` on first read
 - **Tag Resolution Layer**: Provides 100% backward compatibility by intercepting tagged format and returning legacy format to existing code
 - **Configuration Integration**: `global.defaultTag` and `tags` section in config.json manage tag system settings
-- **State Management**: `.taskmaster/state.json` tracks current tag, migration status, and tag-branch mappings
+- **State Management**: `taskmaster/state.json` tracks current tag, migration status, and tag-branch mappings
 - **Migration Notice**: User-friendly notification system for seamless migration experience
 
 **Backward Compatibility**: All existing CLI commands and MCP tools continue to work unchanged. The tag resolution layer ensures that existing code receives the expected legacy format while the underlying storage uses the new tagged structure.

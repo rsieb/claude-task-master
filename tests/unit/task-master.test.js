@@ -44,8 +44,8 @@ describe('initTaskMaster', () => {
 	});
 
 	describe('Project root detection', () => {
-		test('should find project root when .taskmaster directory exists', () => {
-			// Arrange - Create .taskmaster directory in temp dir
+		test('should find project root when taskmaster directory exists', () => {
+			// Arrange - Create taskmaster directory in temp dir
 			const taskMasterDir = path.join(tempDir, TASKMASTER_DIR);
 			fs.mkdirSync(taskMasterDir, { recursive: true });
 
@@ -76,7 +76,7 @@ describe('initTaskMaster', () => {
 		});
 
 		test('should find project root from subdirectory', () => {
-			// Arrange - Create .taskmaster directory in temp dir
+			// Arrange - Create taskmaster directory in temp dir
 			const taskMasterDir = path.join(tempDir, TASKMASTER_DIR);
 			fs.mkdirSync(taskMasterDir, { recursive: true });
 
@@ -93,7 +93,7 @@ describe('initTaskMaster', () => {
 		});
 
 		test('should find project root from deeply nested subdirectory', () => {
-			// Arrange - Create .taskmaster directory in temp dir
+			// Arrange - Create taskmaster directory in temp dir
 			const taskMasterDir = path.join(tempDir, TASKMASTER_DIR);
 			fs.mkdirSync(taskMasterDir, { recursive: true });
 
@@ -122,8 +122,8 @@ describe('initTaskMaster', () => {
 	});
 
 	describe('Project root override validation', () => {
-		test('should accept valid project root override with .taskmaster directory', () => {
-			// Arrange - Create .taskmaster directory in temp dir
+		test('should accept valid project root override with taskmaster directory', () => {
+			// Arrange - Create taskmaster directory in temp dir
 			const taskMasterDir = path.join(tempDir, TASKMASTER_DIR);
 			fs.mkdirSync(taskMasterDir, { recursive: true });
 
@@ -170,7 +170,7 @@ describe('initTaskMaster', () => {
 		});
 
 		test('should resolve relative project root override', () => {
-			// Arrange - Create .taskmaster directory in temp dir
+			// Arrange - Create taskmaster directory in temp dir
 			const taskMasterDir = path.join(tempDir, TASKMASTER_DIR);
 			fs.mkdirSync(taskMasterDir, { recursive: true });
 
@@ -230,7 +230,7 @@ describe('initTaskMaster', () => {
 			expect(() => {
 				initTaskMaster({ tasksPath: true });
 			}).toThrow(
-				'Required tasks file not found. Searched: .taskmaster/tasks/tasks.json, tasks/tasks.json'
+				'Required tasks file not found. Searched: taskmaster/tasks/tasks.json, tasks/tasks.json'
 			);
 		});
 

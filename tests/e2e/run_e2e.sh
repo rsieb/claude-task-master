@@ -333,8 +333,8 @@ log_step() {
 
   log_step "Initializing Task Master project (non-interactive)"
   task-master init -y --name="E2E Test $TIMESTAMP" --description="Automated E2E test run"
-  if [ ! -f ".taskmaster/config.json" ]; then
-    log_error "Initialization failed: .taskmaster/config.json not found."
+  if [ ! -f "taskmaster/config.json" ]; then
+    log_error "Initialization failed: taskmaster/config.json not found."
     exit 1
   fi
   log_success "Project initialized."
@@ -344,8 +344,8 @@ log_step() {
   exit_status_prd=$?
   echo "$cmd_output_prd"
   extract_and_sum_cost "$cmd_output_prd"
-  if [ $exit_status_prd -ne 0 ] || [ ! -s ".taskmaster/tasks/tasks.json" ]; then
-    log_error "Parsing PRD failed: .taskmaster/tasks/tasks.json not found or is empty. Exit status: $exit_status_prd"
+  if [ $exit_status_prd -ne 0 ] || [ ! -s "taskmaster/tasks/tasks.json" ]; then
+    log_error "Parsing PRD failed: taskmaster/tasks/tasks.json not found or is empty. Exit status: $exit_status_prd"
     exit 1
   else
     log_success "PRD parsed successfully."
@@ -394,12 +394,12 @@ log_step() {
   log_step "Adding task to feature-expand tag"
   task-master add-task --tag=feature-expand --prompt="Test task for tag-aware expansion" --priority=medium
   # Get the new task ID dynamically
-  new_expand_task_id=$(jq -r '.["feature-expand"].tasks[-1].id' .taskmaster/tasks/tasks.json)
+  new_expand_task_id=$(jq -r '.["feature-expand"].tasks[-1].id' taskmaster/tasks/tasks.json)
   log_success "Added task $new_expand_task_id to feature-expand tag."
 
   log_step "Verifying tags exist before expand test"
   task-master tags > tags_before_expand.log
-  tag_count_before=$(jq 'keys | length' .taskmaster/tasks/tasks.json)
+  tag_count_before=$(jq 'keys | length' taskmaster/tasks/tasks.json)
   log_success "Tag count before expand: $tag_count_before"
 
   log_step "Expanding task in feature-expand tag (testing tag corruption fix)"
@@ -415,7 +415,7 @@ log_step() {
 
   log_step "Verifying tag preservation after expand"
   task-master tags > tags_after_expand.log
-  tag_count_after=$(jq 'keys | length' .taskmaster/tasks/tasks.json)
+  tag_count_after=$(jq 'keys | length' taskmaster/tasks/tasks.json)
   
   if [ "$tag_count_before" -eq "$tag_count_after" ]; then
     log_success "Tag count preserved: $tag_count_after (no corruption detected)"
@@ -424,7 +424,7 @@ log_step() {
   fi
 
   log_step "Verifying master tag still exists and has tasks"
-  master_task_count=$(jq -r '.master.tasks | length' .taskmaster/tasks/tasks.json 2>/dev/null || echo "0")
+  master_task_count=$(jq -r '.master.tasks | length' taskmaster/tasks/tasks.json 2>/dev/null || echo "0")
   if [ "$master_task_count" -gt "0" ]; then
     log_success "Master tag preserved with $master_task_count tasks"
   else
@@ -432,7 +432,7 @@ log_step() {
   fi
 
   log_step "Verifying feature-expand tag has expanded subtasks"
-  expanded_subtask_count=$(jq -r ".\"feature-expand\".tasks[] | select(.id == $new_expand_task_id) | .subtasks | length" .taskmaster/tasks/tasks.json 2>/dev/null || echo "0")
+  expanded_subtask_count=$(jq -r ".\"feature-expand\".tasks[] | select(.id == $new_expand_task_id) | .subtasks | length" taskmaster/tasks/tasks.json 2>/dev/null || echo "0")
   if [ "$expanded_subtask_count" -gt "0" ]; then
     log_success "Expand successful: $expanded_subtask_count subtasks created in feature-expand tag"
   else
@@ -446,7 +446,7 @@ log_step() {
   extract_and_sum_cost "$cmd_output_force_expand"
   
   # Verify tags still preserved after force expand
-  tag_count_after_force=$(jq 'keys | length' .taskmaster/tasks/tasks.json)
+  tag_count_after_force=$(jq 'keys | length' taskmaster/tasks/tasks.json)
   if [ "$tag_count_before" -eq "$tag_count_after_force" ]; then
     log_success "Force expand preserved all tags"
   else
@@ -456,7 +456,7 @@ log_step() {
   log_step "Testing expand --all with tag preservation"
   # Add another task to feature-expand for expand-all testing
   task-master add-task --tag=feature-expand --prompt="Second task for expand-all testing" --priority=low
-  second_expand_task_id=$(jq -r '.["feature-expand"].tasks[-1].id' .taskmaster/tasks/tasks.json)
+  second_expand_task_id=$(jq -r '.["feature-expand"].tasks[-1].id' taskmaster/tasks/tasks.json)
   
   cmd_output_expand_all=$(task-master expand --tag=feature-expand --all 2>&1)
   exit_status_expand_all=$?
@@ -464,7 +464,7 @@ log_step() {
   extract_and_sum_cost "$cmd_output_expand_all"
   
   # Verify tags preserved after expand-all
-  tag_count_after_all=$(jq 'keys | length' .taskmaster/tasks/tasks.json)
+  tag_count_after_all=$(jq 'keys | length' taskmaster/tasks/tasks.json)
   if [ "$tag_count_before" -eq "$tag_count_after_all" ]; then
     log_success "Expand --all preserved all tags"
   else
@@ -715,7 +715,7 @@ log_step() {
 
   # Find the next available task ID dynamically instead of hardcoding 11, 12
   # Assuming tasks are added sequentially and we didn't remove any core tasks yet
-  last_task_id=$(jq '[.master.tasks[].id] | max' .taskmaster/tasks/tasks.json)
+  last_task_id=$(jq '[.master.tasks[].id] | max' taskmaster/tasks/tasks.json)
   manual_task_id=$((last_task_id + 1))
   ai_task_id=$((manual_task_id + 1))
 
@@ -840,7 +840,7 @@ log_step() {
   task-master expand --id=3
   log_success "Attempted to expand Task 3."
   # Verify 3.1 exists 
-  if ! jq -e '.master.tasks[] | select(.id == 3) | .subtasks[] | select(.id == 1)' .taskmaster/tasks/tasks.json > /dev/null; then
+  if ! jq -e '.master.tasks[] | select(.id == 3) | .subtasks[] | select(.id == 1)' taskmaster/tasks/tasks.json > /dev/null; then
       log_error "Subtask 3.1 not found in tasks.json after expanding Task 3."
       exit 1
   fi

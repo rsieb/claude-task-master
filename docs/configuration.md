@@ -2,11 +2,11 @@
 
 Taskmaster uses two primary methods for configuration:
 
-1.  **`.taskmaster/config.json` File (Recommended - New Structure)**
+1.  **`taskmaster/config.json` File (Recommended - New Structure)**
 
     - This JSON file stores most configuration settings, including AI model selections, parameters, logging levels, and project defaults.
-    - **Location:** This file is created in the `.taskmaster/` directory when you run the `task-master models --setup` interactive setup or initialize a new project with `task-master init`.
-    - **Migration:** Existing projects with `.taskmasterconfig` in the root will continue to work, but should be migrated to the new structure using `task-master migrate`.
+    - **Location:** This file is created in the `taskmaster/` directory when you run the `task-master models --setup` interactive setup or initialize a new project with `task-master init`.
+    - **Migration:** Existing projects with `taskmasterconfig` in the root will continue to work, but should be migrated to the new structure using `task-master migrate`.
     - **Management:** Use the `task-master models --setup` command (or `models` MCP tool) to interactively create and manage this file. You can also set specific models directly using `task-master models --set-<role>=<model_id>`, adding `--ollama` or `--openrouter` flags for custom models. Manual editing is possible but not recommended unless you understand the structure.
     - **Example Structure:**
       ```json
@@ -52,11 +52,11 @@ Taskmaster uses two primary methods for configuration:
 
 > For MCP-specific setup and troubleshooting, see [Provider-Specific Configuration](#provider-specific-configuration).
 
-2.  **Legacy `.taskmasterconfig` File (Backward Compatibility)**
+2.  **Legacy `taskmasterconfig` File (Backward Compatibility)**
 
     - For projects that haven't migrated to the new structure yet.
     - **Location:** Project root directory.
-    - **Migration:** Use `task-master migrate` to move this to `.taskmaster/config.json`.
+    - **Migration:** Use `task-master migrate` to move this to `taskmaster/config.json`.
     - **Deprecation:** While still supported, you'll see warnings encouraging migration to the new structure.
 
 ## Environment Variables (`.env` file or MCP `env` block - For API Keys Only)
@@ -75,7 +75,7 @@ Taskmaster uses two primary methods for configuration:
   - `OPENROUTER_API_KEY`: Your OpenRouter API key.
   - `XAI_API_KEY`: Your X-AI API key.
 - **Optional Endpoint Overrides:**
-  - **Per-role `baseURL` in `.taskmasterconfig`:** You can add a `baseURL` property to any model role (`main`, `research`, `fallback`) to override the default API endpoint for that provider. If omitted, the provider's standard endpoint is used.
+  - **Per-role `baseURL` in `taskmasterconfig`:** You can add a `baseURL` property to any model role (`main`, `research`, `fallback`) to override the default API endpoint for that provider. If omitted, the provider's standard endpoint is used.
   - **Environment Variable Overrides (`<PROVIDER>_BASE_URL`):** For greater flexibility, especially with third-party services, you can set an environment variable like `OPENAI_BASE_URL` or `MISTRAL_BASE_URL`. This will override any `baseURL` set in the configuration file for that provider. This is the recommended way to connect to OpenAI-compatible APIs.
   - `AZURE_OPENAI_ENDPOINT`: Required if using Azure OpenAI key (can also be set as `baseURL` for the Azure model role).
   - `OLLAMA_BASE_URL`: Override the default Ollama API URL (Default: `http://localhost:11434/api`).
@@ -83,7 +83,7 @@ Taskmaster uses two primary methods for configuration:
   - `VERTEX_LOCATION`: Google Cloud region for Vertex AI (e.g., 'us-central1'). Default is 'us-central1'.
   - `GOOGLE_APPLICATION_CREDENTIALS`: Path to service account credentials JSON file for Google Cloud auth (alternative to API key for Vertex AI).
 
-**Important:** Settings like model ID selections (`main`, `research`, `fallback`), `maxTokens`, `temperature`, `logLevel`, `defaultSubtasks`, `defaultPriority`, and `projectName` are **managed in `.taskmaster/config.json`** (or `.taskmasterconfig` for unmigrated projects), not environment variables.
+**Important:** Settings like model ID selections (`main`, `research`, `fallback`), `maxTokens`, `temperature`, `logLevel`, `defaultSubtasks`, `defaultPriority`, and `projectName` are **managed in `taskmaster/config.json`** (or `taskmasterconfig` for unmigrated projects), not environment variables.
 
 ## Tagged Task Lists Configuration (v0.17+)
 
@@ -109,7 +109,7 @@ Task Master provides manual git integration through the `--from-branch` option:
 
 ## State Management File
 
-Taskmaster uses `.taskmaster/state.json` to track tagged system runtime information:
+Taskmaster uses `taskmaster/state.json` to track tagged system runtime information:
 
 ```json
 {
@@ -128,7 +128,7 @@ This file is automatically created during tagged system migration and should not
 ## Example `.env` File (for API Keys)
 
 ```
-# Required API keys for providers configured in .taskmaster/config.json
+# Required API keys for providers configured in taskmaster/config.json
 ANTHROPIC_API_KEY=sk-ant-api03-your-key-here
 PERPLEXITY_API_KEY=pplx-your-key-here
 # OPENAI_API_KEY=sk-your-key-here
@@ -153,7 +153,7 @@ PERPLEXITY_API_KEY=pplx-your-key-here
 ### Configuration Errors
 
 - If Task Master reports errors about missing configuration or cannot find the config file, run `task-master models --setup` in your project root to create or repair the file.
-- For new projects, config will be created at `.taskmaster/config.json`. For legacy projects, you may want to use `task-master migrate` to move to the new structure.
+- For new projects, config will be created at `taskmaster/config.json`. For legacy projects, you may want to use `task-master migrate` to move to the new structure.
 - Ensure API keys are correctly placed in your `.env` file (for CLI) or `.cursor/mcp.json` (for MCP) and are valid for the providers selected in your config file.
 
 ### If `task-master init` doesn't respond:
@@ -267,7 +267,7 @@ Google Vertex AI is Google Cloud's enterprise AI platform and requires specific 
    VERTEX_LOCATION=us-central1
    ```
 
-5. **In .taskmaster/config.json**:
+5. **In taskmaster/config.json**:
    ```json
    "global": {
      "vertexProjectId": "my-gcp-project-123",
@@ -293,7 +293,7 @@ Azure OpenAI provides enterprise-grade OpenAI models through Microsoft's Azure c
 
    **Option 1: Using Global Azure Base URL (affects all Azure models)**
    ```json
-   // In .taskmaster/config.json
+   // In taskmaster/config.json
    {
      "models": {
        "main": {
@@ -317,7 +317,7 @@ Azure OpenAI provides enterprise-grade OpenAI models through Microsoft's Azure c
 
    **Option 2: Using Per-Model Base URLs (recommended for flexibility)**
    ```json
-   // In .taskmaster/config.json
+   // In taskmaster/config.json
    {
      "models": {
        "main": {

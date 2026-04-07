@@ -1122,7 +1122,7 @@ async function copyTag(
  */
 async function switchCurrentTag(projectRoot, tagName) {
 	try {
-		const statePath = path.join(projectRoot, '.taskmaster', 'state.json');
+		const statePath = path.join(projectRoot, 'taskmaster', 'state.json');
 
 		// Read current state or create default
 		let state = {};
@@ -1160,7 +1160,7 @@ async function switchCurrentTag(projectRoot, tagName) {
  */
 async function updateBranchTagMapping(projectRoot, branchName, tagName) {
 	try {
-		const statePath = path.join(projectRoot, '.taskmaster', 'state.json');
+		const statePath = path.join(projectRoot, 'taskmaster', 'state.json');
 
 		// Read current state or create default
 		let state = {};
@@ -1193,7 +1193,7 @@ async function updateBranchTagMapping(projectRoot, branchName, tagName) {
  */
 async function getTagForBranch(projectRoot, branchName) {
 	try {
-		const statePath = path.join(projectRoot, '.taskmaster', 'state.json');
+		const statePath = path.join(projectRoot, 'taskmaster', 'state.json');
 
 		if (!fs.existsSync(statePath)) {
 			return null;
@@ -1467,7 +1467,7 @@ async function autoSwitchTagForBranch(
 async function checkAndAutoSwitchTag(projectRoot, tasksPath, context = {}) {
 	try {
 		// Read configuration
-		const configPath = path.join(projectRoot, '.taskmaster', 'config.json');
+		const configPath = path.join(projectRoot, 'taskmaster', 'config.json');
 		if (!fs.existsSync(configPath)) {
 			return null;
 		}

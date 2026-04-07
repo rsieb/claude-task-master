@@ -49,7 +49,7 @@ Create a secure user authentication system with login, logout, and session manag
 
 Creates structure:
 ```
-.taskmaster/
+taskmaster/
 └── tasks/
     ├── task_001.txt
     ├── task_002.txt
@@ -99,7 +99,7 @@ Based on arguments:
 Task File Generation Complete
 ━━━━━━━━━━━━━━━━━━━━━━━━━━
 Generated: 45 task files
-Location: .taskmaster/tasks/
+Location: taskmaster/tasks/
 Total size: 156 KB
 
 New files: 5

@@ -34,7 +34,7 @@ The Task Template Importing system enables seamless integration of external task
 ## Key User Flows
 ### Template Addition Flow
 1. User receives or creates a `tasks_projectname.json` file
-2. User drops file into `.taskmaster/tasks/` directory
+2. User drops file into `taskmaster/tasks/` directory
 3. Tag becomes immediately available via `task-master use-tag projectname`
 4. User can list, view, and switch to external tag without configuration
 

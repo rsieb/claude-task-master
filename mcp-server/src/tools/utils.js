@@ -80,7 +80,7 @@ function getTagInfo(projectRoot, log) {
 		try {
 			const tasksJsonPath = path.join(
 				projectRoot,
-				'.taskmaster',
+				'taskmaster',
 				'tasks',
 				'tasks.json'
 			);

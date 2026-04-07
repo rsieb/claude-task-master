@@ -32,19 +32,19 @@ function onAddRulesProfile(targetDir, assetsDir) {
 	// Handle AGENT.md import for non-destructive integration (Amp uses AGENT.md, copies from AGENTS.md)
 	const sourceFile = path.join(assetsDir, 'AGENTS.md');
 	const userAgentFile = path.join(targetDir, 'AGENT.md');
-	const taskMasterAgentFile = path.join(targetDir, '.taskmaster', 'AGENT.md');
-	const importLine = '@./.taskmaster/AGENT.md';
+	const taskMasterAgentFile = path.join(targetDir, 'taskmaster', 'AGENT.md');
+	const importLine = '@./taskmaster/AGENT.md';
 	const importSection = `\n## Task Master AI Instructions\n**Import Task Master's development workflow commands and guidelines, treat as if import is in the main AGENT.md file.**\n${importLine}`;
 
 	if (fs.existsSync(sourceFile)) {
 		try {
-			// Ensure .taskmaster directory exists
-			const taskMasterDir = path.join(targetDir, '.taskmaster');
+			// Ensure taskmaster directory exists
+			const taskMasterDir = path.join(targetDir, 'taskmaster');
 			if (!fs.existsSync(taskMasterDir)) {
 				fs.mkdirSync(taskMasterDir, { recursive: true });
 			}
 
-			// Copy Task Master instructions to .taskmaster/AGENT.md
+			// Copy Task Master instructions to taskmaster/AGENT.md
 			fs.copyFileSync(sourceFile, taskMasterAgentFile);
 			log(
 				'debug',
@@ -86,11 +86,11 @@ function onAddRulesProfile(targetDir, assetsDir) {
 function onRemoveRulesProfile(targetDir) {
 	// Clean up AGENT.md import (Amp uses AGENT.md, not AGENTS.md)
 	const userAgentFile = path.join(targetDir, 'AGENT.md');
-	const taskMasterAgentFile = path.join(targetDir, '.taskmaster', 'AGENT.md');
-	const importLine = '@./.taskmaster/AGENT.md';
+	const taskMasterAgentFile = path.join(targetDir, 'taskmaster', 'AGENT.md');
+	const importLine = '@./taskmaster/AGENT.md';
 
 	try {
-		// Remove Task Master AGENT.md from .taskmaster
+		// Remove Task Master AGENT.md from taskmaster
 		if (fs.existsSync(taskMasterAgentFile)) {
 			fs.rmSync(taskMasterAgentFile, { force: true });
 			log('debug', `[Amp] Removed ${taskMasterAgentFile}`);
@@ -266,7 +266,7 @@ export const ampProfile = createProfile({
 	mcpConfigName: 'settings.json',
 	includeDefaultRules: false,
 	fileMap: {
-		'AGENTS.md': '.taskmaster/AGENT.md'
+		'AGENTS.md': 'taskmaster/AGENT.md'
 	},
 	onAdd: onAddRulesProfile,
 	onRemove: onRemoveRulesProfile,

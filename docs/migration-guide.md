@@ -1,8 +1,8 @@
-# Migration Guide: New .taskmaster Directory Structure
+# Migration Guide: New taskmaster Directory Structure
 
 ## Overview
 
-Task Master v0.16.0 introduces a new `.taskmaster/` directory structure to keep your project directories clean and organized. This guide explains the benefits of the new structure and how to migrate existing projects.
+Task Master v0.16.0 introduces a new `taskmaster/` directory structure to keep your project directories clean and organized. This guide explains the benefits of the new structure and how to migrate existing projects.
 
 ## What's New
 
@@ -18,7 +18,7 @@ your-project/
 │   ├── prd.txt
 │   ├── example_prd.txt
 │   └── task-complexity-report.json
-├── .taskmasterconfig         # Configuration
+├── taskmasterconfig         # Configuration
 └── ... (your project files)
 ```
 
@@ -26,8 +26,8 @@ your-project/
 
 ```
 your-project/
-├── .taskmaster/              # Consolidated Task Master files
-│   ├── config.json          # Configuration (was .taskmasterconfig)
+├── taskmaster/              # Consolidated Task Master files
+│   ├── config.json          # Configuration (was taskmasterconfig)
 │   ├── tasks/               # Task files
 │   │   ├── tasks.json
 │   │   ├── task-1.txt
@@ -45,7 +45,7 @@ your-project/
 
 ✅ **Cleaner Project Root**: No more scattered Task Master files  
 ✅ **Better Organization**: Logical separation of tasks, docs, reports, and templates  
-✅ **Hidden by Default**: `.taskmaster/` directory is hidden from most file browsers  
+✅ **Hidden by Default**: `taskmaster/` directory is hidden from most file browsers  
 ✅ **Future-Proof**: Centralized location for Task Master extensions  
 ✅ **Backward Compatible**: Existing projects continue to work until migrated
 
@@ -76,7 +76,7 @@ task-master migrate --cleanup
 Ask your AI assistant:
 
 ```
-Please migrate my Task Master project to the new .taskmaster directory structure
+Please migrate my Task Master project to the new taskmaster directory structure
 ```
 
 ### Option 2: Manual Migration
@@ -86,24 +86,24 @@ If you prefer to migrate manually:
 1. **Create the new directory structure:**
 
    ```bash
-   mkdir -p .taskmaster/{tasks,docs,reports,templates}
+   mkdir -p taskmaster/{tasks,docs,reports,templates}
    ```
 
 2. **Move your files:**
 
    ```bash
    # Move tasks
-   mv tasks/* .taskmaster/tasks/
+   mv tasks/* taskmaster/tasks/
 
    # Move configuration
-   mv .taskmasterconfig .taskmaster/config.json
+   mv taskmasterconfig taskmaster/config.json
 
    # Move PRD and documentation
-   mv scripts/prd.txt .taskmaster/docs/
-   mv scripts/example_prd.txt .taskmaster/templates/
+   mv scripts/prd.txt taskmaster/docs/
+   mv scripts/example_prd.txt taskmaster/templates/
 
    # Move reports (if they exist)
-   mv scripts/task-complexity-report.json .taskmaster/reports/ 2>/dev/null || true
+   mv scripts/task-complexity-report.json taskmaster/reports/ 2>/dev/null || true
    ```
 
 3. **Clean up empty directories:**
@@ -115,23 +115,23 @@ If you prefer to migrate manually:
 
 The migration process handles these file types:
 
-### Tasks Directory → `.taskmaster/tasks/`
+### Tasks Directory → `taskmaster/tasks/`
 
 - `tasks.json`
 - Individual task text files (`.txt`)
 
 ### Scripts Directory → Multiple Destinations
 
-- **PRD files** → `.taskmaster/docs/`
+- **PRD files** → `taskmaster/docs/`
   - `prd.txt`, `requirements.txt`, etc.
-- **Example/Template files** → `.taskmaster/templates/`
+- **Example/Template files** → `taskmaster/templates/`
   - `example_prd.txt`, template files
-- **Reports** → `.taskmaster/reports/`
+- **Reports** → `taskmaster/reports/`
   - `task-complexity-report.json`
 
 ### Configuration
 
-- `.taskmasterconfig` → `.taskmaster/config.json`
+- `taskmasterconfig` → `taskmaster/config.json`
 
 ## After Migration
 
@@ -190,7 +190,7 @@ If you're working with an older project that hasn't been migrated:
 New projects automatically use the new structure:
 
 ```bash
-task-master init  # Creates .taskmaster/ structure
+task-master init  # Creates taskmaster/ structure
 ```
 
 ## Path Changes for Developers
@@ -199,26 +199,26 @@ If you're developing tools or scripts that interact with Task Master files:
 
 ### Configuration File
 
-- **Old:** `.taskmasterconfig`
-- **New:** `.taskmaster/config.json`
+- **Old:** `taskmasterconfig`
+- **New:** `taskmaster/config.json`
 - **Fallback:** Task Master checks both locations
 
 ### Tasks File
 
 - **Old:** `tasks/tasks.json`
-- **New:** `.taskmaster/tasks/tasks.json`
+- **New:** `taskmaster/tasks/tasks.json`
 - **Fallback:** Task Master checks both locations
 
 ### Reports
 
 - **Old:** `scripts/task-complexity-report.json`
-- **New:** `.taskmaster/reports/task-complexity-report.json`
+- **New:** `taskmaster/reports/task-complexity-report.json`
 - **Fallback:** Task Master checks both locations
 
 ### PRD Files
 
 - **Old:** `scripts/prd.txt`
-- **New:** `.taskmaster/docs/prd.txt`
+- **New:** `taskmaster/docs/prd.txt`
 - **Fallback:** Task Master checks both locations
 
 ## Need Help?

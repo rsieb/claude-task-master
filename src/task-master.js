@@ -45,10 +45,10 @@ export class TaskMaster {
 	}
 
 	/**
-	 * @returns {string|null} The absolute path to the .taskmaster directory.
+	 * @returns {string|null} The absolute path to the taskmaster directory.
 	 */
 	getTaskMasterDir() {
-		return this.#paths.taskMasterDir;
+		return this.#pathstaskmasterDir;
 	}
 
 	/**
@@ -255,14 +255,14 @@ export function initTaskMaster(overrides = {}) {
 
 	// TaskMaster Directory
 	if ('taskMasterDir' in overrides) {
-		paths.taskMasterDir = resolvePath(
+		pathstaskmasterDir = resolvePath(
 			'taskmaster directory',
-			overrides.taskMasterDir,
+			overridestaskmasterDir,
 			[TASKMASTER_DIR],
 			paths.projectRoot
 		);
 	} else {
-		paths.taskMasterDir = resolvePath(
+		pathstaskmasterDir = resolvePath(
 			'taskmaster directory',
 			false,
 			[TASKMASTER_DIR],
@@ -274,7 +274,7 @@ export function initTaskMaster(overrides = {}) {
 	// These can be overridden below if needed
 	paths.configPath = path.join(paths.projectRoot, TASKMASTER_CONFIG_FILE);
 	paths.statePath = path.join(
-		paths.taskMasterDir || path.join(paths.projectRoot, TASKMASTER_DIR),
+		pathstaskmasterDir || path.join(paths.projectRoot, TASKMASTER_DIR),
 		'state.json'
 	);
 	paths.tasksPath = path.join(paths.projectRoot, TASKMASTER_TASKS_FILE);
@@ -294,7 +294,7 @@ export function initTaskMaster(overrides = {}) {
 			'state file',
 			overrides.statePath,
 			['state.json'],
-			paths.taskMasterDir
+			pathstaskmasterDir
 		);
 	}
 

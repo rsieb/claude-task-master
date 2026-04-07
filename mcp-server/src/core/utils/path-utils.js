@@ -163,7 +163,7 @@ export function resolveProjectPath(relativePath, args) {
 		throw new Error('projectRoot is required in args to resolve project paths');
 	}
 
-	// Normalize the project root to prevent double .taskmaster paths
+	// Normalize the project root to prevent double taskmaster paths
 	const projectRoot = normalizeProjectRoot(args.projectRoot);
 
 	// If already absolute, return as-is

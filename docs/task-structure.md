@@ -354,7 +354,7 @@ Here's a complete example showing the tagged task structure:
 
 Task Master automatically determines the current tag context based on:
 
-1. **State Configuration**: Current tag stored in `.taskmaster/state.json`
+1. **State Configuration**: Current tag stored in `taskmaster/state.json`
 2. **Default Fallback**: "master" tag when no context is specified
 3. **Future Enhancement**: Git branch-based tag switching (Part 2)
 
@@ -397,8 +397,8 @@ When Task Master encounters a legacy format `tasks.json` file:
 
 1. **Detection**: Automatically detects `{"tasks": [...]}` format
 2. **Transformation**: Converts to `{"master": {"tasks": [...]}}` format
-3. **Configuration**: Updates `.taskmaster/config.json` with tagged system settings
-4. **State Creation**: Creates `.taskmaster/state.json` for tag management
+3. **Configuration**: Updates `taskmaster/config.json` with tagged system settings
+4. **State Creation**: Creates `taskmaster/state.json` for tag management
 5. **Notification**: Shows one-time friendly notice about the new system
 6. **Preservation**: All existing task data is preserved exactly as-is
 

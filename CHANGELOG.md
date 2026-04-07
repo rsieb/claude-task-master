@@ -39,12 +39,12 @@
   When using `task-master expand` to break down tasks into subtasks, dependencies between subtasks are now properly validated. Previously, subtasks with dependencies would fail validation. Now subtasks can correctly depend on their siblings within the same parent task.
 
 - [#1009](https://github.com/eyaltoledano/claude-task-master/pull/1009) [`6d69d02`](https://github.com/eyaltoledano/claude-task-master/commit/6d69d02fe03edcc785380415995d5cfcdd97acbb) Thanks [@Crunchyman-ralph](https://github.com/Crunchyman-ralph)! - Prevent CLAUDE.md overwrite by using Claude Code's import feature
-  - Task Master now creates its instructions in `.taskmaster/CLAUDE.md` instead of overwriting the user's `CLAUDE.md`
+  - Task Master now creates its instructions in `taskmaster/CLAUDE.md` instead of overwriting the user's `CLAUDE.md`
   - Adds an import section to the user's CLAUDE.md that references the Task Master instructions
   - Preserves existing user content in CLAUDE.md files
   - Provides clean uninstall that only removes Task Master's additions
 
-  **Breaking Change**: Task Master instructions for Claude Code are now stored in `.taskmaster/CLAUDE.md` and imported into the main CLAUDE.md file. Users who previously had Task Master content directly in their CLAUDE.md will need to run `task-master rules remove claude` followed by `task-master rules add claude` to migrate to the new structure.
+  **Breaking Change**: Task Master instructions for Claude Code are now stored in `taskmaster/CLAUDE.md` and imported into the main CLAUDE.md file. Users who previously had Task Master content directly in their CLAUDE.md will need to run `task-master rules remove claude` followed by `task-master rules add claude` to migrate to the new structure.
 
 - [#1009](https://github.com/eyaltoledano/claude-task-master/pull/1009) [`fd005c4`](https://github.com/eyaltoledano/claude-task-master/commit/fd005c4c5481ffac58b11f01a448fa5b29056b8d) Thanks [@Crunchyman-ralph](https://github.com/Crunchyman-ralph)! - Implement Boundary-First Tag Resolution to ensure consistent and deterministic tag handling across CLI and MCP, resolving potential race conditions.
 
@@ -106,12 +106,12 @@
   When using `task-master expand` to break down tasks into subtasks, dependencies between subtasks are now properly validated. Previously, subtasks with dependencies would fail validation. Now subtasks can correctly depend on their siblings within the same parent task.
 
 - [#949](https://github.com/eyaltoledano/claude-task-master/pull/949) [`f662654`](https://github.com/eyaltoledano/claude-task-master/commit/f662654afb8e7a230448655265d6f41adf6df62c) Thanks [@ben-vargas](https://github.com/ben-vargas)! - Prevent CLAUDE.md overwrite by using Claude Code's import feature
-  - Task Master now creates its instructions in `.taskmaster/CLAUDE.md` instead of overwriting the user's `CLAUDE.md`
+  - Task Master now creates its instructions in `taskmaster/CLAUDE.md` instead of overwriting the user's `CLAUDE.md`
   - Adds an import section to the user's CLAUDE.md that references the Task Master instructions
   - Preserves existing user content in CLAUDE.md files
   - Provides clean uninstall that only removes Task Master's additions
 
-  **Breaking Change**: Task Master instructions for Claude Code are now stored in `.taskmaster/CLAUDE.md` and imported into the main CLAUDE.md file. Users who previously had Task Master content directly in their CLAUDE.md will need to run `task-master rules remove claude` followed by `task-master rules add claude` to migrate to the new structure.
+  **Breaking Change**: Task Master instructions for Claude Code are now stored in `taskmaster/CLAUDE.md` and imported into the main CLAUDE.md file. Users who previously had Task Master content directly in their CLAUDE.md will need to run `task-master rules remove claude` followed by `task-master rules add claude` to migrate to the new structure.
 
 - [#943](https://github.com/eyaltoledano/claude-task-master/pull/943) [`f98df5c`](https://github.com/eyaltoledano/claude-task-master/commit/f98df5c0fdb253b2b55d4278c11d626529c4dba4) Thanks [@mm-parthy](https://github.com/mm-parthy)! - Implement Boundary-First Tag Resolution to ensure consistent and deterministic tag handling across CLI and MCP, resolving potential race conditions.
 
@@ -290,7 +290,7 @@
   - Add new test section for feature-expand tag creation and testing during expand operations
   - Verify tag preservation during expand, force expand, and expand --all operations
   - Test that master tag remains intact while feature-expand tag receives subtasks correctly
-  - Fix file path references to use correct .taskmaster/config.json and .taskmaster/tasks/tasks.json locations
+  - Fix file path references to use correct taskmaster/config.json and taskmaster/tasks/tasks.json locations
   - All tag corruption verification tests pass successfully, confirming the expand command tag corruption bug fix works as expected
 
 - [#840](https://github.com/eyaltoledano/claude-task-master/pull/840) [`b40139c`](https://github.com/eyaltoledano/claude-task-master/commit/b40139ca0517fd76aea4f41d0ed4c10e658a5d2b) Thanks [@Crunchyman-ralph](https://github.com/Crunchyman-ralph)! - Fix Cursor deeplink installation by providing copy-paste instructions for GitHub compatibility
@@ -389,7 +389,7 @@
   - Add new test section for feature-expand tag creation and testing during expand operations
   - Verify tag preservation during expand, force expand, and expand --all operations
   - Test that master tag remains intact while feature-expand tag receives subtasks correctly
-  - Fix file path references to use correct .taskmaster/config.json and .taskmaster/tasks/tasks.json locations
+  - Fix file path references to use correct taskmaster/config.json and taskmaster/tasks/tasks.json locations
   - All tag corruption verification tests pass successfully, confirming the expand command tag corruption bug fix works as expected
 
 - [#833](https://github.com/eyaltoledano/claude-task-master/pull/833) [`cf2c066`](https://github.com/eyaltoledano/claude-task-master/commit/cf2c06697a0b5b952fb6ca4b3c923e9892604d08) Thanks [@joedanz](https://github.com/joedanz)! - Call rules interactive setup during init
@@ -486,7 +486,7 @@
   - Add new test section for feature-expand tag creation and testing during expand operations
   - Verify tag preservation during expand, force expand, and expand --all operations
   - Test that master tag remains intact while feature-expand tag receives subtasks correctly
-  - Fix file path references to use correct .taskmaster/config.json and .taskmaster/tasks/tasks.json locations
+  - Fix file path references to use correct taskmaster/config.json and taskmaster/tasks/tasks.json locations
   - All tag corruption verification tests pass successfully, confirming the expand command tag corruption bug fix works as expected
 
 - [#833](https://github.com/eyaltoledano/claude-task-master/pull/833) [`cf2c066`](https://github.com/eyaltoledano/claude-task-master/commit/cf2c06697a0b5b952fb6ca4b3c923e9892604d08) Thanks [@joedanz](https://github.com/joedanz)! - Call rules interactive setup during init
@@ -622,8 +622,8 @@
   - **Legacy Format**: `{ "tasks": [...] }`
   - **New Tagged Format**: `{ "master": { "tasks": [...], "metadata": {...} }, "feature-xyz": { "tasks": [...], "metadata": {...} } }`
   - **Automatic Migration**: Existing projects will seamlessly migrate to tagged format with zero user intervention
-  - **State Management**: New `.taskmaster/state.json` tracks current tag, last switched time, migration status and more.
-  - **Configuration Integration**: Enhanced `.taskmaster/config.json` with tag-specific settings and defaults.
+  - **State Management**: New `taskmaster/state.json` tracks current tag, last switched time, migration status and more.
+  - **Configuration Integration**: Enhanced `taskmaster/config.json` with tag-specific settings and defaults.
 
   By default, your existing task list will be migrated to the `master` tag.
 
@@ -693,7 +693,7 @@
   - All existing commands work identically to before
 
   **State Management:**
-  - `.taskmaster/state.json` tracks current tag and migration status
+  - `taskmaster/state.json` tracks current tag and migration status
   - Automatic state creation and maintenance
   - Branch-tag mapping foundation for Git integration
   - Migration notice tracking to avoid repeated notifications
@@ -765,7 +765,7 @@
   - Enables programmatic research saving for AI agents and integrated tools
 
   **File Management:**
-  - Automatically creates `.taskmaster/docs/research/` directory structure
+  - Automatically creates `taskmaster/docs/research/` directory structure
   - Generates timestamped, slugified filenames (e.g., `2025-01-13_what-is-typescript.md`)
   - Comprehensive Markdown format with metadata headers including query, timestamp, and context sources
   - Clean conversation history formatting without duplicate information
@@ -859,7 +859,7 @@
 
   The add-task system now provides truly relevant task context based on semantic understanding rather than arbitrary categories and limits, while maintaining a cleaner and more professional terminal experience.
 
-- [#655](https://github.com/eyaltoledano/claude-task-master/pull/655) [`edaa5fe`](https://github.com/eyaltoledano/claude-task-master/commit/edaa5fe0d56e0e4e7c4370670a7a388eebd922ac) Thanks [@Crunchyman-ralph](https://github.com/Crunchyman-ralph)! - Fix double .taskmaster directory paths in file resolution utilities
+- [#655](https://github.com/eyaltoledano/claude-task-master/pull/655) [`edaa5fe`](https://github.com/eyaltoledano/claude-task-master/commit/edaa5fe0d56e0e4e7c4370670a7a388eebd922ac) Thanks [@Crunchyman-ralph](https://github.com/Crunchyman-ralph)! - Fix double taskmaster directory paths in file resolution utilities
   - Closes #636
 
 - [#671](https://github.com/eyaltoledano/claude-task-master/pull/671) [`86ea6d1`](https://github.com/eyaltoledano/claude-task-master/commit/86ea6d1dbc03eeb39f524f565b50b7017b1d2c9c) Thanks [@joedanz](https://github.com/joedanz)! - Add one-click MCP server installation for Cursor
@@ -920,7 +920,7 @@
 
   The add-task system now provides truly relevant task context based on semantic understanding rather than arbitrary categories and limits, while maintaining a cleaner and more professional terminal experience.
 
-- [#655](https://github.com/eyaltoledano/claude-task-master/pull/655) [`edaa5fe`](https://github.com/eyaltoledano/claude-task-master/commit/edaa5fe0d56e0e4e7c4370670a7a388eebd922ac) Thanks [@Crunchyman-ralph](https://github.com/Crunchyman-ralph)! - Fix double .taskmaster directory paths in file resolution utilities
+- [#655](https://github.com/eyaltoledano/claude-task-master/pull/655) [`edaa5fe`](https://github.com/eyaltoledano/claude-task-master/commit/edaa5fe0d56e0e4e7c4370670a7a388eebd922ac) Thanks [@Crunchyman-ralph](https://github.com/Crunchyman-ralph)! - Fix double taskmaster directory paths in file resolution utilities
   - Closes #636
 
 - [#671](https://github.com/eyaltoledano/claude-task-master/pull/671) [`86ea6d1`](https://github.com/eyaltoledano/claude-task-master/commit/86ea6d1dbc03eeb39f524f565b50b7017b1d2c9c) Thanks [@joedanz](https://github.com/joedanz)! - Add one-click MCP server installation for Cursor
@@ -946,7 +946,7 @@
 
 ### Patch Changes
 
-- [#655](https://github.com/eyaltoledano/claude-task-master/pull/655) [`edaa5fe`](https://github.com/eyaltoledano/claude-task-master/commit/edaa5fe0d56e0e4e7c4370670a7a388eebd922ac) Thanks [@Crunchyman-ralph](https://github.com/Crunchyman-ralph)! - Fix double .taskmaster directory paths in file resolution utilities
+- [#655](https://github.com/eyaltoledano/claude-task-master/pull/655) [`edaa5fe`](https://github.com/eyaltoledano/claude-task-master/commit/edaa5fe0d56e0e4e7c4370670a7a388eebd922ac) Thanks [@Crunchyman-ralph](https://github.com/Crunchyman-ralph)! - Fix double taskmaster directory paths in file resolution utilities
   - Closes #636
 
 - [#671](https://github.com/eyaltoledano/claude-task-master/pull/671) [`86ea6d1`](https://github.com/eyaltoledano/claude-task-master/commit/86ea6d1dbc03eeb39f524f565b50b7017b1d2c9c) Thanks [@joedanz](https://github.com/joedanz)! - Add one-click MCP server installation for Cursor
@@ -989,16 +989,16 @@
 - [#604](https://github.com/eyaltoledano/claude-task-master/pull/604) [`80735f9`](https://github.com/eyaltoledano/claude-task-master/commit/80735f9e60c7dda7207e169697f8ac07b6733634) Thanks [@Crunchyman-ralph](https://github.com/Crunchyman-ralph)! - Add TASK_MASTER_PROJECT_ROOT env variable supported in mcp.json and .env for project root resolution
   - Some users were having issues where the MCP wasn't able to detect the location of their project root, you can now set the `TASK_MASTER_PROJECT_ROOT` environment variable to the root of your project.
 
-- [#619](https://github.com/eyaltoledano/claude-task-master/pull/619) [`3f64202`](https://github.com/eyaltoledano/claude-task-master/commit/3f64202c9feef83f2bf383c79e4367d337c37e20) Thanks [@Crunchyman-ralph](https://github.com/Crunchyman-ralph)! - Consolidate Task Master files into unified .taskmaster directory structure
+- [#619](https://github.com/eyaltoledano/claude-task-master/pull/619) [`3f64202`](https://github.com/eyaltoledano/claude-task-master/commit/3f64202c9feef83f2bf383c79e4367d337c37e20) Thanks [@Crunchyman-ralph](https://github.com/Crunchyman-ralph)! - Consolidate Task Master files into unified taskmaster directory structure
 
-  This release introduces a new consolidated directory structure that organizes all Task Master files under a single `.taskmaster/` directory for better project organization and cleaner workspace management.
+  This release introduces a new consolidated directory structure that organizes all Task Master files under a single `taskmaster/` directory for better project organization and cleaner workspace management.
 
   **New Directory Structure:**
-  - `.taskmaster/tasks/` - Task files (previously `tasks/`)
-  - `.taskmaster/docs/` - Documentation including PRD files (previously `scripts/`)
-  - `.taskmaster/reports/` - Complexity analysis reports (previously `scripts/`)
-  - `.taskmaster/templates/` - Template files like example PRD
-  - `.taskmaster/config.json` - Configuration (previously `.taskmasterconfig`)
+  - `taskmaster/tasks/` - Task files (previously `tasks/`)
+  - `taskmaster/docs/` - Documentation including PRD files (previously `scripts/`)
+  - `taskmaster/reports/` - Complexity analysis reports (previously `scripts/`)
+  - `taskmaster/templates/` - Template files like example PRD
+  - `taskmaster/config.json` - Configuration (previously `taskmasterconfig`)
 
   **Migration & Backward Compatibility:**
   - Existing projects continue to work with legacy file locations
@@ -1044,16 +1044,16 @@
 - [#604](https://github.com/eyaltoledano/claude-task-master/pull/604) [`80735f9`](https://github.com/eyaltoledano/claude-task-master/commit/80735f9e60c7dda7207e169697f8ac07b6733634) Thanks [@Crunchyman-ralph](https://github.com/Crunchyman-ralph)! - Add TASK_MASTER_PROJECT_ROOT env variable supported in mcp.json and .env for project root resolution
   - Some users were having issues where the MCP wasn't able to detect the location of their project root, you can now set the `TASK_MASTER_PROJECT_ROOT` environment variable to the root of your project.
 
-- [#619](https://github.com/eyaltoledano/claude-task-master/pull/619) [`3f64202`](https://github.com/eyaltoledano/claude-task-master/commit/3f64202c9feef83f2bf383c79e4367d337c37e20) Thanks [@Crunchyman-ralph](https://github.com/Crunchyman-ralph)! - Consolidate Task Master files into unified .taskmaster directory structure
+- [#619](https://github.com/eyaltoledano/claude-task-master/pull/619) [`3f64202`](https://github.com/eyaltoledano/claude-task-master/commit/3f64202c9feef83f2bf383c79e4367d337c37e20) Thanks [@Crunchyman-ralph](https://github.com/Crunchyman-ralph)! - Consolidate Task Master files into unified taskmaster directory structure
 
-  This release introduces a new consolidated directory structure that organizes all Task Master files under a single `.taskmaster/` directory for better project organization and cleaner workspace management.
+  This release introduces a new consolidated directory structure that organizes all Task Master files under a single `taskmaster/` directory for better project organization and cleaner workspace management.
 
   **New Directory Structure:**
-  - `.taskmaster/tasks/` - Task files (previously `tasks/`)
-  - `.taskmaster/docs/` - Documentation including PRD files (previously `scripts/`)
-  - `.taskmaster/reports/` - Complexity analysis reports (previously `scripts/`)
-  - `.taskmaster/templates/` - Template files like example PRD
-  - `.taskmaster/config.json` - Configuration (previously `.taskmasterconfig`)
+  - `taskmaster/tasks/` - Task files (previously `tasks/`)
+  - `taskmaster/docs/` - Documentation including PRD files (previously `scripts/`)
+  - `taskmaster/reports/` - Complexity analysis reports (previously `scripts/`)
+  - `taskmaster/templates/` - Template files like example PRD
+  - `taskmaster/config.json` - Configuration (previously `taskmasterconfig`)
 
   **Migration & Backward Compatibility:**
   - Existing projects continue to work with legacy file locations
@@ -1082,7 +1082,7 @@
 - [#567](https://github.com/eyaltoledano/claude-task-master/pull/567) [`09add37`](https://github.com/eyaltoledano/claude-task-master/commit/09add37423d70b809d5c28f3cde9fccd5a7e64e7) Thanks [@eyaltoledano](https://github.com/eyaltoledano)! - Added comprehensive Ollama model validation and interactive setup support
   - **Interactive Setup Enhancement**: Added "Custom Ollama model" option to `task-master models --setup`, matching the existing OpenRouter functionality
   - **Live Model Validation**: When setting Ollama models, Taskmaster now validates against the local Ollama instance by querying `/api/tags` endpoint
-  - **Configurable Endpoints**: Uses the `ollamaBaseUrl` from `.taskmasterconfig` (with role-specific `baseUrl` overrides supported)
+  - **Configurable Endpoints**: Uses the `ollamaBaseUrl` from `taskmasterconfig` (with role-specific `baseUrl` overrides supported)
   - **Robust Error Handling**:
     - Detects when Ollama server is not running and provides clear error messages
     - Validates model existence and lists available alternatives when model not found
@@ -1163,7 +1163,7 @@
 - [#567](https://github.com/eyaltoledano/claude-task-master/pull/567) [`09add37`](https://github.com/eyaltoledano/claude-task-master/commit/09add37423d70b809d5c28f3cde9fccd5a7e64e7) Thanks [@eyaltoledano](https://github.com/eyaltoledano)! - Added comprehensive Ollama model validation and interactive setup support
   - **Interactive Setup Enhancement**: Added "Custom Ollama model" option to `task-master models --setup`, matching the existing OpenRouter functionality
   - **Live Model Validation**: When setting Ollama models, Taskmaster now validates against the local Ollama instance by querying `/api/tags` endpoint
-  - **Configurable Endpoints**: Uses the `ollamaBaseUrl` from `.taskmasterconfig` (with role-specific `baseUrl` overrides supported)
+  - **Configurable Endpoints**: Uses the `ollamaBaseUrl` from `taskmasterconfig` (with role-specific `baseUrl` overrides supported)
   - **Robust Error Handling**:
     - Detects when Ollama server is not running and provides clear error messages
     - Validates model existence and lists available alternatives when model not found
@@ -1241,13 +1241,13 @@
 
 ### Minor Changes
 
-- [#521](https://github.com/eyaltoledano/claude-task-master/pull/521) [`ed17cb0`](https://github.com/eyaltoledano/claude-task-master/commit/ed17cb0e0a04dedde6c616f68f24f3660f68dd04) Thanks [@Crunchyman-ralph](https://github.com/Crunchyman-ralph)! - .taskmasterconfig now supports a baseUrl field per model role (main, research, fallback), allowing endpoint overrides for any provider.
+- [#521](https://github.com/eyaltoledano/claude-task-master/pull/521) [`ed17cb0`](https://github.com/eyaltoledano/claude-task-master/commit/ed17cb0e0a04dedde6c616f68f24f3660f68dd04) Thanks [@Crunchyman-ralph](https://github.com/Crunchyman-ralph)! - taskmasterconfig now supports a baseUrl field per model role (main, research, fallback), allowing endpoint overrides for any provider.
 
 - [#536](https://github.com/eyaltoledano/claude-task-master/pull/536) [`f4a83ec`](https://github.com/eyaltoledano/claude-task-master/commit/f4a83ec047b057196833e3a9b861d4bceaec805d) Thanks [@Crunchyman-ralph](https://github.com/Crunchyman-ralph)! - Add Ollama as a supported AI provider.
   - You can now add it by running `task-master models --setup` and selecting it.
   - Ollama is a local model provider, so no API key is required.
   - Ollama models are available at `http://localhost:11434/api` by default.
-  - You can change the default URL by setting the `OLLAMA_BASE_URL` environment variable or by adding a `baseUrl` property to the `ollama` model role in `.taskmasterconfig`.
+  - You can change the default URL by setting the `OLLAMA_BASE_URL` environment variable or by adding a `baseUrl` property to the `ollama` model role in `taskmasterconfig`.
     - If you want to use a custom API key, you can set it in the `OLLAMA_API_KEY` environment variable.
 
 - [#528](https://github.com/eyaltoledano/claude-task-master/pull/528) [`58b417a`](https://github.com/eyaltoledano/claude-task-master/commit/58b417a8ce697e655f749ca4d759b1c20014c523) Thanks [@Crunchyman-ralph](https://github.com/Crunchyman-ralph)! - Display task complexity scores in task lists, next task, and task details views.
@@ -1300,7 +1300,7 @@
   - You can now add it by running `task-master models --setup` and selecting it.
   - Ollama is a local model provider, so no API key is required.
   - Ollama models are available at `http://localhost:11434/api` by default.
-  - You can change the default URL by setting the `OLLAMA_BASE_URL` environment variable or by adding a `baseUrl` property to the `ollama` model role in `.taskmasterconfig`.
+  - You can change the default URL by setting the `OLLAMA_BASE_URL` environment variable or by adding a `baseUrl` property to the `ollama` model role in `taskmasterconfig`.
     - If you want to use a custom API key, you can set it in the `OLLAMA_API_KEY` environment variable.
 
 ### Patch Changes
@@ -1313,7 +1313,7 @@
 
 ### Minor Changes
 
-- [#521](https://github.com/eyaltoledano/claude-task-master/pull/521) [`ed17cb0`](https://github.com/eyaltoledano/claude-task-master/commit/ed17cb0e0a04dedde6c616f68f24f3660f68dd04) Thanks [@Crunchyman-ralph](https://github.com/Crunchyman-ralph)! - .taskmasterconfig now supports a baseUrl field per model role (main, research, fallback), allowing endpoint overrides for any provider.
+- [#521](https://github.com/eyaltoledano/claude-task-master/pull/521) [`ed17cb0`](https://github.com/eyaltoledano/claude-task-master/commit/ed17cb0e0a04dedde6c616f68f24f3660f68dd04) Thanks [@Crunchyman-ralph](https://github.com/Crunchyman-ralph)! - taskmasterconfig now supports a baseUrl field per model role (main, research, fallback), allowing endpoint overrides for any provider.
 
 - [#528](https://github.com/eyaltoledano/claude-task-master/pull/528) [`58b417a`](https://github.com/eyaltoledano/claude-task-master/commit/58b417a8ce697e655f749ca4d759b1c20014c523) Thanks [@Crunchyman-ralph](https://github.com/Crunchyman-ralph)! - Display task complexity scores in task lists, next task, and task details views.
 
@@ -1363,7 +1363,7 @@
 
 - [#240](https://github.com/eyaltoledano/claude-task-master/pull/240) [`87d97bb`](https://github.com/eyaltoledano/claude-task-master/commit/87d97bba00d84e905756d46ef96b2d5b984e0f38) Thanks [@eyaltoledano](https://github.com/eyaltoledano)! - Adds support for the OpenRouter AI provider. Users can now configure models available through OpenRouter (requiring an `OPENROUTER_API_KEY`) via the `task-master models` command, granting access to a wide range of additional LLMs. - IMPORTANT FYI ABOUT OPENROUTER: Taskmaster relies on AI SDK, which itself relies on tool use. It looks like **free** models sometimes do not include tool use. For example, Gemini 2.5 pro (free) failed via OpenRouter (no tool use) but worked fine on the paid version of the model. Custom model support for Open Router is considered experimental and likely will not be further improved for some time.
 
-- [#240](https://github.com/eyaltoledano/claude-task-master/pull/240) [`1ab836f`](https://github.com/eyaltoledano/claude-task-master/commit/1ab836f191cb8969153593a9a0bd47fc9aa4a831) Thanks [@eyaltoledano](https://github.com/eyaltoledano)! - Adds model management and new configuration file .taskmasterconfig which houses the models used for main, research and fallback. Adds models command and setter flags. Adds a --setup flag with an interactive setup. We should be calling this during init. Shows a table of active and available models when models is called without flags. Includes SWE scores and token costs, which are manually entered into the supported_models.json, the new place where models are defined for support. Config-manager.js is the core module responsible for managing the new config."
+- [#240](https://github.com/eyaltoledano/claude-task-master/pull/240) [`1ab836f`](https://github.com/eyaltoledano/claude-task-master/commit/1ab836f191cb8969153593a9a0bd47fc9aa4a831) Thanks [@eyaltoledano](https://github.com/eyaltoledano)! - Adds model management and new configuration file taskmasterconfig which houses the models used for main, research and fallback. Adds models command and setter flags. Adds a --setup flag with an interactive setup. We should be calling this during init. Shows a table of active and available models when models is called without flags. Includes SWE scores and token costs, which are manually entered into the supported_models.json, the new place where models are defined for support. Config-manager.js is the core module responsible for managing the new config."
 
 - [#240](https://github.com/eyaltoledano/claude-task-master/pull/240) [`c8722b0`](https://github.com/eyaltoledano/claude-task-master/commit/c8722b0a7a443a73b95d1bcd4a0b68e0fce2a1cd) Thanks [@eyaltoledano](https://github.com/eyaltoledano)! - Adds custom model ID support for Ollama and OpenRouter providers.
   - Adds the `--ollama` and `--openrouter` flags to `task-master models --set-<role>` command to set models for those providers outside of the support models list.
@@ -1399,7 +1399,7 @@
   - **Refactor `init.js`:** Remove internal `isInteractive` flag logic.
   - **Update `init` Instructions:** Tweak the "Getting Started" text displayed after `init`.
   - **Fix MCP Server Launch:** Update `.cursor/mcp.json` template to use `node ./mcp-server/server.js` instead of `npx task-master-mcp`.
-  - **Update Default Model:** Change the default main model in the `.taskmasterconfig` template.
+  - **Update Default Model:** Change the default main model in the `taskmasterconfig` template.
 
 - [#240](https://github.com/eyaltoledano/claude-task-master/pull/240) [`96aeeff`](https://github.com/eyaltoledano/claude-task-master/commit/96aeeffc195372722c6a07370540e235bfe0e4d8) Thanks [@eyaltoledano](https://github.com/eyaltoledano)! - Fixes an issue with add-task which did not use the manually defined properties and still needlessly hit the AI endpoint.
 
@@ -1413,7 +1413,7 @@
 
 - [#328](https://github.com/eyaltoledano/claude-task-master/pull/328) [`5a2371b`](https://github.com/eyaltoledano/claude-task-master/commit/5a2371b7cc0c76f5e95d43921c1e8cc8081bf14e) Thanks [@knoxgraeme](https://github.com/knoxgraeme)! - Fix --task to --num-tasks in ui + related tests - issue #324
 
-- [#240](https://github.com/eyaltoledano/claude-task-master/pull/240) [`6cb213e`](https://github.com/eyaltoledano/claude-task-master/commit/6cb213ebbd51116ae0688e35b575d09443d17c3b) Thanks [@eyaltoledano](https://github.com/eyaltoledano)! - Adds a 'models' CLI and MCP command to get the current model configuration, available models, and gives the ability to set main/research/fallback models." - In the CLI, `task-master models` shows the current models config. Using the `--setup` flag launches an interactive set up that allows you to easily select the models you want to use for each of the three roles. Use `q` during the interactive setup to cancel the setup. - In the MCP, responses are simplified in RESTful format (instead of the full CLI output). The agent can use the `models` tool with different arguments, including `listAvailableModels` to get available models. Run without arguments, it will return the current configuration. Arguments are available to set the model for each of the three roles. This allows you to manage Taskmaster AI providers and models directly from either the CLI or MCP or both. - Updated the CLI help menu when you run `task-master` to include missing commands and .taskmasterconfig information. - Adds `--research` flag to `add-task` so you can hit up Perplexity right from the add-task flow, rather than having to add a task and then update it.
+- [#240](https://github.com/eyaltoledano/claude-task-master/pull/240) [`6cb213e`](https://github.com/eyaltoledano/claude-task-master/commit/6cb213ebbd51116ae0688e35b575d09443d17c3b) Thanks [@eyaltoledano](https://github.com/eyaltoledano)! - Adds a 'models' CLI and MCP command to get the current model configuration, available models, and gives the ability to set main/research/fallback models." - In the CLI, `task-master models` shows the current models config. Using the `--setup` flag launches an interactive set up that allows you to easily select the models you want to use for each of the three roles. Use `q` during the interactive setup to cancel the setup. - In the MCP, responses are simplified in RESTful format (instead of the full CLI output). The agent can use the `models` tool with different arguments, including `listAvailableModels` to get available models. Run without arguments, it will return the current configuration. Arguments are available to set the model for each of the three roles. This allows you to manage Taskmaster AI providers and models directly from either the CLI or MCP or both. - Updated the CLI help menu when you run `task-master` to include missing commands and taskmasterconfig information. - Adds `--research` flag to `add-task` so you can hit up Perplexity right from the add-task flow, rather than having to add a task and then update it.
 
 ## 0.12.1
 

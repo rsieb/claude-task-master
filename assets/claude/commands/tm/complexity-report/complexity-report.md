@@ -16,7 +16,7 @@ task-master complexity-report [--file=<path>]
 
 ## Report Location
 
-Default: `.taskmaster/reports/complexity-analysis.md`
+Default: `taskmaster/reports/complexity-analysis.md`
 Custom: Specify with --file parameter
 
 ## Report Contents

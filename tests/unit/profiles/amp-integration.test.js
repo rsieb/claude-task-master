@@ -41,7 +41,7 @@ describe('Amp Profile Integration', () => {
 
 		test('should have correct file mapping', () => {
 			expect(ampProfile.fileMap).toEqual({
-				'AGENTS.md': '.taskmaster/AGENT.md'
+				'AGENTS.md': 'taskmaster/AGENT.md'
 			});
 		});
 
@@ -57,8 +57,8 @@ describe('Amp Profile Integration', () => {
 			// Call onAddRulesProfile
 			ampProfile.onAddRulesProfile(tempDir, assetsDir);
 
-			// Should only have created .taskmaster directory and AGENT.md
-			expect(fs.existsSync(path.join(tempDir, '.taskmaster'))).toBe(true);
+			// Should only have created taskmaster directory and AGENT.md
+			expect(fs.existsSync(path.join(tempDir, 'taskmaster'))).toBe(true);
 			expect(fs.existsSync(path.join(tempDir, 'AGENT.md'))).toBe(true);
 
 			// Should not have created any other directories (like .claude)
@@ -80,7 +80,7 @@ describe('Amp Profile Integration', () => {
 
 			// Should not create any files
 			expect(fs.existsSync(path.join(tempDir, 'AGENT.md'))).toBe(false);
-			expect(fs.existsSync(path.join(tempDir, '.taskmaster', 'AGENT.md'))).toBe(
+			expect(fs.existsSync(path.join(tempDir, 'taskmaster', 'AGENT.md'))).toBe(
 				false
 			);
 		});
@@ -111,7 +111,7 @@ describe('Amp Profile Integration', () => {
 			expect(updatedContent).toContain('This is my custom configuration.');
 			expect(updatedContent).toContain('## Custom Section');
 			expect(updatedContent).toContain('Some custom rules here.');
-			expect(updatedContent).toContain('@./.taskmaster/AGENT.md');
+			expect(updatedContent).toContain('@./taskmaster/AGENT.md');
 		});
 	});
 
@@ -257,7 +257,7 @@ describe('Amp Profile Integration', () => {
 			ampProfile.onPostConvertRulesProfile(tempDir, assetsDir);
 
 			// Should have same result as onAddRulesProfile
-			expect(fs.existsSync(path.join(tempDir, '.taskmaster', 'AGENT.md'))).toBe(
+			expect(fs.existsSync(path.join(tempDir, 'taskmaster', 'AGENT.md'))).toBe(
 				true
 			);
 			expect(fs.existsSync(path.join(tempDir, 'AGENT.md'))).toBe(true);
@@ -266,7 +266,7 @@ describe('Amp Profile Integration', () => {
 				path.join(tempDir, 'AGENT.md'),
 				'utf8'
 			);
-			expect(agentContent).toContain('@./.taskmaster/AGENT.md');
+			expect(agentContent).toContain('@./taskmaster/AGENT.md');
 		});
 	});
 

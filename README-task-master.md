@@ -15,7 +15,7 @@ A task management system for AI-driven development with Claude, designed to work
 
 Taskmaster uses two primary configuration methods:
 
-1.  **`.taskmasterconfig` File (Project Root)**
+1.  **`taskmasterconfig` File (Project Root)**
 
     - Stores most settings: AI model selections (main, research, fallback), parameters (max tokens, temperature), logging level, default priority/subtasks, project name.
     - **Created and managed using `task-master models --setup` CLI command or the `models` MCP tool.**

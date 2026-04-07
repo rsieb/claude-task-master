@@ -63,19 +63,19 @@ function onAddRulesProfile(targetDir, assetsDir) {
 	// Handle CLAUDE.md import for non-destructive integration
 	const sourceFile = path.join(assetsDir, 'AGENTS.md');
 	const userClaudeFile = path.join(targetDir, 'CLAUDE.md');
-	const taskMasterClaudeFile = path.join(targetDir, '.taskmaster', 'CLAUDE.md');
-	const importLine = '@./.taskmaster/CLAUDE.md';
+	const taskMasterClaudeFile = path.join(targetDir, 'taskmaster', 'CLAUDE.md');
+	const importLine = '@./taskmaster/CLAUDE.md';
 	const importSection = `\n## Task Master AI Instructions\n**Import Task Master's development workflow commands and guidelines, treat as if import is in the main CLAUDE.md file.**\n${importLine}`;
 
 	if (fs.existsSync(sourceFile)) {
 		try {
-			// Ensure .taskmaster directory exists
-			const taskMasterDir = path.join(targetDir, '.taskmaster');
+			// Ensure taskmaster directory exists
+			const taskMasterDir = path.join(targetDir, 'taskmaster');
 			if (!fs.existsSync(taskMasterDir)) {
 				fs.mkdirSync(taskMasterDir, { recursive: true });
 			}
 
-			// Copy Task Master instructions to .taskmaster/CLAUDE.md
+			// Copy Task Master instructions to taskmaster/CLAUDE.md
 			fs.copyFileSync(sourceFile, taskMasterClaudeFile);
 			log(
 				'debug',
@@ -127,11 +127,11 @@ function onRemoveRulesProfile(targetDir) {
 
 	// Clean up CLAUDE.md import
 	const userClaudeFile = path.join(targetDir, 'CLAUDE.md');
-	const taskMasterClaudeFile = path.join(targetDir, '.taskmaster', 'CLAUDE.md');
-	const importLine = '@./.taskmaster/CLAUDE.md';
+	const taskMasterClaudeFile = path.join(targetDir, 'taskmaster', 'CLAUDE.md');
+	const importLine = '@./taskmaster/CLAUDE.md';
 
 	try {
-		// Remove Task Master CLAUDE.md from .taskmaster
+		// Remove Task Master CLAUDE.md from taskmaster
 		if (fs.existsSync(taskMasterClaudeFile)) {
 			fs.rmSync(taskMasterClaudeFile, { force: true });
 			log('debug', `[Claude] Removed ${taskMasterClaudeFile}`);
@@ -277,7 +277,7 @@ export const claudeProfile = createProfile({
 	mcpConfigName: '.mcp.json', // Place MCP config in project root
 	includeDefaultRules: false,
 	fileMap: {
-		'AGENTS.md': '.taskmaster/CLAUDE.md'
+		'AGENTS.md': 'taskmaster/CLAUDE.md'
 	},
 	onAdd: onAddRulesProfile,
 	onRemove: onRemoveRulesProfile,

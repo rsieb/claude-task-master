@@ -42,7 +42,7 @@ describe('Amp Profile Init Functionality', () => {
 
 		test('should have correct file mapping', () => {
 			expect(ampProfile.fileMap).toBeDefined();
-			expect(ampProfile.fileMap['AGENTS.md']).toBe('.taskmaster/AGENT.md');
+			expect(ampProfile.fileMap['AGENTS.md']).toBe('taskmaster/AGENT.md');
 		});
 
 		test('should have lifecycle functions', () => {
@@ -72,10 +72,10 @@ describe('Amp Profile Init Functionality', () => {
 			const content = fs.readFileSync(agentFile, 'utf8');
 			expect(content).toContain('# Amp Instructions');
 			expect(content).toContain('## Task Master AI Instructions');
-			expect(content).toContain('@./.taskmaster/AGENT.md');
+			expect(content).toContain('@./taskmaster/AGENT.md');
 
-			// Check that .taskmaster/AGENT.md was created
-			const taskMasterAgent = path.join(tempDir, '.taskmaster', 'AGENT.md');
+			// Check that taskmaster/AGENT.md was created
+			const taskMasterAgent = path.join(tempDir, 'taskmaster', 'AGENT.md');
 			expect(fs.existsSync(taskMasterAgent)).toBe(true);
 		});
 
@@ -102,13 +102,13 @@ describe('Amp Profile Init Functionality', () => {
 			expect(content).toContain('# My Existing Amp Instructions');
 			expect(content).toContain('Some content here.');
 			expect(content).toContain('## Task Master AI Instructions');
-			expect(content).toContain('@./.taskmaster/AGENT.md');
+			expect(content).toContain('@./taskmaster/AGENT.md');
 		});
 
 		test('should not duplicate import if already exists', () => {
 			// Create AGENT.md with existing import
 			const existingContent =
-				"# My Amp Instructions\n\n## Task Master AI Instructions\n**Import Task Master's development workflow commands and guidelines, treat as if import is in the main AGENT.md file.**\n@./.taskmaster/AGENT.md";
+				"# My Amp Instructions\n\n## Task Master AI Instructions\n**Import Task Master's development workflow commands and guidelines, treat as if import is in the main AGENT.md file.**\n@./taskmaster/AGENT.md";
 			fs.writeFileSync(path.join(tempDir, 'AGENT.md'), existingContent);
 
 			// Create mock AGENTS.md source
@@ -125,7 +125,7 @@ describe('Amp Profile Init Functionality', () => {
 			// Check that import was not duplicated
 			const agentFile = path.join(tempDir, 'AGENT.md');
 			const content = fs.readFileSync(agentFile, 'utf8');
-			const importCount = (content.match(/@\.\/.taskmaster\/AGENT\.md/g) || [])
+			const importCount = (content.match(/@\.\/taskmaster\/AGENT\.md/g) || [])
 				.length;
 			expect(importCount).toBe(1);
 		});
@@ -208,22 +208,22 @@ describe('Amp Profile Init Functionality', () => {
 
 	describe('Removal Functionality', () => {
 		test('should remove AGENT.md import and clean up files', () => {
-			// Setup: Create AGENT.md with import and .taskmaster/AGENT.md
+			// Setup: Create AGENT.md with import and taskmaster/AGENT.md
 			const agentContent =
-				"# My Amp Instructions\n\nSome content.\n\n## Task Master AI Instructions\n**Import Task Master's development workflow commands and guidelines, treat as if import is in the main AGENT.md file.**\n@./.taskmaster/AGENT.md\n";
+				"# My Amp Instructions\n\nSome content.\n\n## Task Master AI Instructions\n**Import Task Master's development workflow commands and guidelines, treat as if import is in the main AGENT.md file.**\n@./taskmaster/AGENT.md\n";
 			fs.writeFileSync(path.join(tempDir, 'AGENT.md'), agentContent);
 
-			fs.mkdirSync(path.join(tempDir, '.taskmaster'), { recursive: true });
+			fs.mkdirSync(path.join(tempDir, 'taskmaster'), { recursive: true });
 			fs.writeFileSync(
-				path.join(tempDir, '.taskmaster', 'AGENT.md'),
+				path.join(tempDir, 'taskmaster', 'AGENT.md'),
 				'Task Master instructions'
 			);
 
 			// Call onRemoveRulesProfile
 			ampProfile.onRemoveRulesProfile(tempDir);
 
-			// Check that .taskmaster/AGENT.md was removed
-			expect(fs.existsSync(path.join(tempDir, '.taskmaster', 'AGENT.md'))).toBe(
+			// Check that taskmaster/AGENT.md was removed
+			expect(fs.existsSync(path.join(tempDir, 'taskmaster', 'AGENT.md'))).toBe(
 				false
 			);
 
@@ -233,7 +233,7 @@ describe('Amp Profile Init Functionality', () => {
 				'utf8'
 			);
 			expect(remainingContent).not.toContain('## Task Master AI Instructions');
-			expect(remainingContent).not.toContain('@./.taskmaster/AGENT.md');
+			expect(remainingContent).not.toContain('@./taskmaster/AGENT.md');
 			expect(remainingContent).toContain('# My Amp Instructions');
 			expect(remainingContent).toContain('Some content.');
 		});
@@ -241,12 +241,12 @@ describe('Amp Profile Init Functionality', () => {
 		test('should remove empty AGENT.md if only contained import', () => {
 			// Setup: Create AGENT.md with only import
 			const agentContent =
-				"# Amp Instructions\n\n## Task Master AI Instructions\n**Import Task Master's development workflow commands and guidelines, treat as if import is in the main AGENT.md file.**\n@./.taskmaster/AGENT.md";
+				"# Amp Instructions\n\n## Task Master AI Instructions\n**Import Task Master's development workflow commands and guidelines, treat as if import is in the main AGENT.md file.**\n@./taskmaster/AGENT.md";
 			fs.writeFileSync(path.join(tempDir, 'AGENT.md'), agentContent);
 
-			fs.mkdirSync(path.join(tempDir, '.taskmaster'), { recursive: true });
+			fs.mkdirSync(path.join(tempDir, 'taskmaster'), { recursive: true });
 			fs.writeFileSync(
-				path.join(tempDir, '.taskmaster', 'AGENT.md'),
+				path.join(tempDir, 'taskmaster', 'AGENT.md'),
 				'Task Master instructions'
 			);
 
@@ -329,8 +329,8 @@ describe('Amp Profile Init Functionality', () => {
 			expect(result.success).toBeGreaterThan(0);
 			expect(result.failed).toBe(0);
 
-			// Check that .taskmaster/AGENT.md was created
-			expect(fs.existsSync(path.join(tempDir, '.taskmaster', 'AGENT.md'))).toBe(
+			// Check that taskmaster/AGENT.md was created
+			expect(fs.existsSync(path.join(tempDir, 'taskmaster', 'AGENT.md'))).toBe(
 				true
 			);
 
@@ -340,7 +340,7 @@ describe('Amp Profile Init Functionality', () => {
 				path.join(tempDir, 'AGENT.md'),
 				'utf8'
 			);
-			expect(agentContent).toContain('@./.taskmaster/AGENT.md');
+			expect(agentContent).toContain('@./taskmaster/AGENT.md');
 		});
 	});
 });
